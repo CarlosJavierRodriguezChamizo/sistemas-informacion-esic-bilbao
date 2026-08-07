@@ -1,0 +1,48 @@
+// Configuración de Vite — proyecto multipágina, offline-first.
+// base:'./' => rutas relativas, para servir desde GitHub Pages / Vercel
+// y también al abrir los HTML directamente en local (file://).
+import { defineConfig } from 'vite';
+import { resolve } from 'path';
+
+const r = (p) => resolve(__dirname, p);
+
+export default defineConfig({
+  base: './',
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true,
+    rollupOptions: {
+      // Todas las páginas de la arquitectura declaradas como entradas.
+      // (No existe ninguna página de profesor: se gestiona fuera del proyecto.)
+      input: {
+        // Hub / escaleta viva
+        index: r('index.html'),
+        // Apertura inmersiva (WebGL + GLSL + Lenis)
+        intro: r('decks/intro.html'),
+        // Mazos de teoría (RevealJS)
+        m1: r('decks/m1.html'),
+        datos: r('decks/datos.html'),
+        m2: r('decks/m2.html'),
+        m3: r('decks/m3.html'),
+        m4: r('decks/m4.html'),
+        // Historias visuales (scrollytelling) de los bloques clave
+        silos: r('decks/silos.html'),
+        arquitectura: r('decks/arquitectura.html'),
+        // Taller ERP en la nube
+        odoo: r('decks/odoo.html'),
+        // Casos + síntesis
+        casos: r('decks/casos.html'),
+        // El reto del Comité (pitch inicial)
+        comite: r('decks/comite.html'),
+        // Herramientas interactivas (prácticas)
+        clasificador: r('tools/clasificador.html'),
+        mapaSilos: r('tools/mapa-silos.html'),
+        validacionDato: r('tools/validacion-dato.html'),
+        api: r('tools/api.html'),
+        migrarIntegrar: r('tools/migrar-integrar.html'),
+        mcp: r('tools/mcp.html'),
+        kahoot: r('tools/kahoot.html'),
+      },
+    },
+  },
+});

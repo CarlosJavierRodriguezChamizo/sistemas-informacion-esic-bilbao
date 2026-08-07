@@ -1,0 +1,361 @@
+/* =========================================================================
+   deck.css — Tema RevealJS con la identidad ESIC / Gorbea.
+   Base azul corporativo + texto blanco; slides en claro con .slide--light.
+   El CSS core de Reveal se importa desde deck.js (offline, vía npm).
+   ========================================================================= */
+@import "./tokens.css";
+
+/* ----------------------------------------------------- Lienzo del deck */
+.reveal-viewport { background-color: var(--c-bg-blue); }
+
+.reveal {
+  font-family: var(--font-body);
+  color: #fff;
+  font-size: 30px;            /* base; Reveal escala al proyectar */
+}
+
+/* Titulares en display condensada */
+.reveal h1, .reveal h2, .reveal h3 {
+  font-family: var(--font-display);
+  color: #fff;
+  letter-spacing: .01em;
+  line-height: 1.02;
+  margin: 0 0 .4em;
+  text-transform: none;
+}
+.reveal h1 { font-size: 2.4em; }
+.reveal h2 { font-size: 1.7em; }
+.reveal h3 { font-size: 1.2em; }
+.reveal p { line-height: 1.4; }
+.reveal strong { color: var(--c-accent); }
+.reveal em { color: var(--c-accent); font-style: normal; }
+.reveal a { color: var(--c-accent); }
+
+.reveal ul, .reveal ol { display: block; margin-left: 1em; }
+.reveal li { margin: .35em 0; }
+.reveal .muted { color: var(--c-white-soft); }
+.reveal .eyebrow {
+  font-family: var(--font-display); letter-spacing: .08em; text-transform: uppercase;
+  color: var(--c-accent); font-size: .8em; margin-bottom: .4em; display: block;
+}
+
+/* ------------------------------------------------- Slides en claro */
+.reveal .slide--light h1,
+.reveal .slide--light h2,
+.reveal .slide--light h3 { color: var(--c-ink); }
+.reveal .slide--light,
+.reveal .slide--light p,
+.reveal .slide--light li { color: var(--c-body); }
+.reveal .slide--light strong,
+.reveal .slide--light em { color: var(--c-accent-blue); }
+.reveal .slide--light .eyebrow { color: var(--c-accent-blue); }
+.reveal .slide--light .muted { color: var(--c-ink-soft); }
+
+/* ------------------------------------------------- Logo persistente */
+.deck-logo {
+  position: fixed; top: 28px; left: 36px; height: 34px; width: auto; z-index: 40;
+  pointer-events: none;
+}
+.deck-logo--blue { display: none; }
+body.light-slide .deck-logo--white { display: none; }
+body.light-slide .deck-logo--blue { display: block; }
+
+/* ------------------------------------------------- Controles / progreso */
+.reveal .progress { color: var(--c-accent); height: 6px; }
+.reveal .controls { color: #fff; }
+.reveal .slide-number { background: transparent; color: rgba(255, 255, 255, .55); font-family: var(--font-body); }
+body.light-slide .reveal .controls { color: var(--c-ink); }
+body.light-slide .reveal .slide-number { color: var(--c-ink-soft); }
+
+/* ------------------------------------------------- Utilidades de slide */
+.reveal .badge {
+  display: inline-block; padding: .22em .7em; border-radius: 8px;
+  font: 600 .6em/1 var(--font-display); letter-spacing: .05em; text-transform: uppercase;
+  color: #fff; background: var(--c-accent);
+}
+.reveal .badge--m1 { background: var(--c-accent); color: var(--c-ink); }
+.reveal .badge--m2 { background: #b79bff; color: var(--c-ink); }
+.reveal .badge--m3 { background: var(--c-accent); color: var(--c-ink); }
+
+/* Rejilla de tarjetas dentro de una slide */
+.reveal .cards { display: grid; gap: .8em; grid-template-columns: repeat(3, 1fr); margin-top: .5em; }
+.reveal .cards--2 { grid-template-columns: repeat(2, 1fr); }
+.reveal .ccard {
+  background: rgba(255, 255, 255, .10); border: 1px solid var(--c-line-blue);
+  border-radius: 14px; padding: .7em .8em; text-align: left;
+}
+.reveal .ccard h3 { font-size: 1em; margin-bottom: .2em; color: #fff; }
+.reveal .ccard p { font-size: .72em; margin: 0; color: var(--c-white-soft); }
+.reveal .slide--light .ccard { background: #f4f6fb; border-color: var(--c-line); }
+.reveal .slide--light .ccard h3 { color: var(--c-ink); }
+.reveal .slide--light .ccard p { color: var(--c-ink-soft); }
+
+/* Cifra grande estilo KPI dentro de slide */
+.reveal .big {
+  font-family: var(--font-display); font-size: 3.2em; line-height: .9; color: var(--c-accent);
+}
+.reveal .slide--light .big { color: var(--c-accent-blue); }
+
+/* ------------------------------------------------- Pirámide TPS–EIS */
+.pyramid { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: .4em; }
+.pyramid__row {
+  display: flex; align-items: center; justify-content: center; gap: 1em;
+  color: #fff; border-radius: 8px; padding: .35em 1em; text-align: center;
+  background: rgba(255, 255, 255, .12); border: 1px solid var(--c-line-blue);
+}
+.pyramid__row b { font-family: var(--font-display); letter-spacing: .04em; }
+.pyramid__row small { color: var(--c-white-soft); font-size: .62em; }
+.pyramid__row--eis { width: 34%; background: var(--c-accent); color: var(--c-ink); border: none; }
+.pyramid__row--eis small { color: rgba(0,19,63,.7); }
+.pyramid__row--dss { width: 52%; }
+.pyramid__row--mis { width: 72%; }
+.pyramid__row--tps { width: 92%; }
+
+/* ------------------------------------------------- Timeline evolución */
+.timeline { display: flex; gap: 1em; margin-top: .6em; }
+.timeline > div { flex: 1; background: rgba(255,255,255,.10); border: 1px solid var(--c-line-blue); border-radius: 12px; padding: .6em .7em; }
+.timeline h3 { font-size: .95em; color: var(--c-accent); }
+.timeline p { font-size: .7em; color: var(--c-white-soft); margin: 0; }
+
+/* ------------------------------------------------- CTA de cierre */
+.deck-cta {
+  display: inline-flex; align-items: center; gap: .5em;
+  padding: .55em 1.3em; border-radius: 999px; margin-top: .4em;
+  background: var(--c-accent); color: var(--c-ink);
+  font: 600 .9em/1 var(--font-body); text-decoration: none;
+}
+.deck-cta:hover { background: #08c7aa; color: var(--c-ink); }
+/* Gana a `.reveal a` (turquesa), si no el texto quedaría invisible sobre el pill. */
+.reveal .deck-cta, .reveal .deck-cta:hover { color: var(--c-ink); }
+.reveal .deck-cta::after { content: "→"; }
+
+/* Foco visible accesible sobre el deck */
+.reveal a:focus-visible, .deck-cta:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+/* ============================================ Capa WebGL (solo data-gl) */
+/* Lienzos a pantalla completa, por detrás de las slides. */
+body[data-gl] #deck-bg,
+body[data-gl] #deck-server {
+  position: fixed; inset: 0; width: 100vw; height: 100vh;
+  display: block; z-index: 0; pointer-events: none;
+}
+/* La sala de servidores aparece solo en las portadas (fundido suave). */
+body[data-gl] #deck-server { opacity: 0; transition: opacity .6s ease; }
+body[data-gl] #deck-server.is-on { opacity: 1; }
+/* Fallback si no hay WebGL: degradado de marca discreto. */
+body[data-gl] #deck-bg.gl--unsupported {
+  background: radial-gradient(120% 100% at 50% 0%, #0a235e 0%, #00133f 60%, #00091f 100%);
+}
+/* El deck va por encima de los lienzos; su fondo plano se vuelve transparente
+   para dejar ver el shader (las slides .slide--light siguen tapándolo). */
+body[data-gl].reveal-viewport,
+body[data-gl] .reveal-viewport { background-color: transparent; }
+body[data-gl] .reveal { position: relative; z-index: 1; }
+/* Refuerzo de legibilidad del texto sobre la sala de servidores. */
+body[data-gl] .slide--cover h1,
+body[data-gl] .slide--cover h2,
+body[data-gl] .slide--cover p { text-shadow: 0 2px 28px rgba(0, 5, 20, .75); }
+
+/* ====================================================================== */
+/* =========  Maquetación editorial + Glassmorphism (M1)  =============== */
+/* ====================================================================== */
+/* M1 es 100% oscuro sobre el fondo WebGL: los paneles "glass" garantizan
+   legibilidad de la presentación pase lo que pase detrás. */
+
+/* --- Superficie de cristal compartida --- */
+.reveal .glass,
+.reveal .feat,
+.reveal .flow__step,
+.reveal .org,
+.reveal .ben,
+.reveal .htl__node {
+  position: relative;
+  background: linear-gradient(155deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, .035));
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 18px;
+  box-shadow: 0 16px 46px rgba(0, 8, 28, .45), inset 0 1px 0 rgba(255, 255, 255, .18);
+}
+
+/* Mejor jerarquía/legibilidad general en M1 */
+.reveal h2 { font-size: 1.9em; letter-spacing: 0; }
+.reveal .muted { color: rgba(255, 255, 255, .8); }
+
+/* --- Iconos / ilustraciones de línea --- */
+.reveal .ico-chip {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2em; height: 2em; border-radius: 12px; margin-bottom: .5em;
+  background: rgba(10, 228, 195, .12); border: 1px solid rgba(10, 228, 195, .35);
+  box-shadow: 0 0 18px rgba(10, 228, 195, .18), inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+.reveal .ico {
+  width: 1.15em; height: 1.15em;
+  fill: none; stroke: var(--c-accent); stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* --- Kicker con barra de acento --- */
+.reveal .kicker {
+  display: inline-flex; align-items: center; gap: .55em;
+  font-family: var(--font-display); text-transform: uppercase; letter-spacing: .16em;
+  font-size: .64em; color: var(--c-accent); margin-bottom: .75em;
+}
+.reveal .kicker::before { content: ""; width: 2.4em; height: .14em; background: var(--c-accent); border-radius: 2px; box-shadow: 0 0 16px rgba(10, 228, 195, .7); }
+
+/* --- Columnas asimétricas --- */
+.reveal .split { display: grid; grid-template-columns: .92fr 1.08fr; gap: 1.4em; align-items: center; text-align: left; }
+.reveal .split > .col-l h2 { font-size: 2.1em; margin-bottom: .3em; }
+.reveal .statement { font-family: var(--font-display); font-size: 1.3em; line-height: 1.06; color: #fff; }
+.reveal .statement .hl { color: var(--c-accent); }
+
+/* ============================================ Estética 21st.dev + Motion */
+/* Evita el "flash" antes de que Motion anime (si hay JS y no reduce-motion). */
+@media (prefers-reduced-motion: no-preference) {
+  body[data-motion] [data-anim] { opacity: 0; }
+}
+/* Spotlight: brillo que sigue al cursor (recreación de la tarjeta 21st.dev). */
+.reveal .spot::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), rgba(10, 228, 195, .20), transparent 60%);
+  opacity: 0; transition: opacity .35s ease;
+}
+.reveal .spot:hover::after { opacity: 1; }
+/* Micro-interacción: elevación al hover. */
+.reveal .lift { transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease; }
+.reveal .lift:hover { transform: translateY(-4px); box-shadow: 0 22px 60px rgba(0, 8, 28, .55), inset 0 1px 0 rgba(255, 255, 255, .2); }
+/* Borde con glow animado (conic) para la tarjeta destacada. */
+.reveal .glow-border { position: relative; }
+.reveal .glow-border::before {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: conic-gradient(from var(--ang, 0deg), transparent 0 70%, rgba(10, 228, 195, .9) 85%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: spin-border 4s linear infinite;
+}
+@property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes spin-border { to { --ang: 360deg; } }
+@media (prefers-reduced-motion: reduce) { .reveal .glow-border::before { animation: none; } }
+
+/* --- Cifras grandes animadas (Motion) + fila de estadísticas --- */
+.reveal .bignum {
+  display: block; font-family: var(--font-display); line-height: .9;
+  font-size: 4.2em; color: var(--c-accent); margin: .15em 0;
+  text-shadow: 0 0 40px rgba(10, 228, 195, .45);
+}
+.reveal .bignum--sm { font-size: 1.9em; }
+.reveal .statrow { display: flex; gap: .8em; justify-content: center; margin: .2em 0 .2em; }
+.reveal .stat { flex: 1; max-width: 9em; padding: .6em .5em; text-align: center; }
+.reveal .stat__lab { display: block; font-size: .55em; letter-spacing: .1em; text-transform: uppercase; color: rgba(255, 255, 255, .7); margin-top: .2em; }
+
+/* --- Panel glass genérico + lista con checks --- */
+.reveal .panel { padding: .95em 1.15em; text-align: left; }
+.reveal .checks { list-style: none; margin: 0; }
+.reveal .checks li { position: relative; padding-left: 1.6em; margin: .5em 0; font-size: .76em; color: rgba(255, 255, 255, .88); }
+.reveal .checks li::before { content: "✓"; position: absolute; left: 0; top: -.02em; color: var(--c-accent); font-weight: 700; }
+.reveal .checks li strong { color: #fff; }
+
+/* --- Rejilla de "piezas" con número fantasma --- */
+.reveal .feats { display: grid; grid-template-columns: repeat(2, 1fr); gap: .7em; }
+.reveal .feats--3 { grid-template-columns: repeat(3, 1fr); }
+.reveal .feat { overflow: hidden; text-align: left; padding: .75em .9em; }
+.reveal .feat__n {
+  position: absolute; right: .14em; top: -.16em; font-family: var(--font-display);
+  font-size: 2.9em; line-height: 1; color: rgba(255, 255, 255, .10); pointer-events: none;
+}
+.reveal .feat h3 { font-size: 1.0em; margin: 0 0 .14em; color: #fff; }
+.reveal .feat p { font-size: .66em; color: rgba(255, 255, 255, .82); margin: 0; }
+.reveal .feat--accent {
+  border-color: rgba(10, 228, 195, .55);
+  box-shadow: 0 0 26px rgba(10, 228, 195, .22), 0 16px 46px rgba(0, 8, 28, .45), inset 0 1px 0 rgba(10, 228, 195, .28);
+}
+.reveal .feat--accent .feat__n { color: rgba(10, 228, 195, .28); }
+
+/* --- Flujo horizontal con flechas --- */
+.reveal .flow { display: flex; align-items: stretch; gap: .55em; justify-content: center; margin-top: .8em; }
+.reveal .flow__step { flex: 1; padding: .8em .85em; text-align: left; }
+.reveal .flow__step h3 { font-size: 1.0em; color: #fff; margin: 0 0 .15em; }
+.reveal .flow__step p { font-size: .64em; color: rgba(255, 255, 255, .8); margin: 0; }
+.reveal .flow__step .num { font-family: var(--font-display); color: var(--c-accent); font-size: .8em; }
+.reveal .flow__arrow { align-self: center; font-size: 1.6em; color: var(--c-accent); line-height: 1; text-shadow: 0 0 18px rgba(10, 228, 195, .6); }
+.reveal .loopback {
+  margin: .9em auto 0; max-width: 28em; text-align: center; color: #fff; font-size: .74em;
+  border: 1px dashed rgba(10, 228, 195, .55); border-radius: 999px; padding: .45em 1.1em;
+  background: rgba(10, 228, 195, .06);
+}
+.reveal .loopback strong { color: var(--c-accent); }
+
+/* --- Pirámide grande y con degradado --- */
+.reveal .pyramid--xl .pyramid__row {
+  padding: .55em 1em; font-size: 1.1em;
+  border-color: rgba(255, 255, 255, .22);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+.reveal .pyramid--xl .pyramid__row--tps { background: rgba(255, 255, 255, .10); }
+.reveal .pyramid--xl .pyramid__row--mis { background: rgba(0, 71, 233, .5); }
+.reveal .pyramid--xl .pyramid__row--dss { background: rgba(0, 71, 233, .8); border: none; }
+.reveal .pyramid--xl .pyramid__row--eis { background: var(--c-accent); box-shadow: 0 0 30px rgba(10, 228, 195, .5); }
+
+/* Glosario de siglas (slide de la pirámide) */
+.reveal .pyr-defs { margin: .5em 0 0; display: grid; gap: .4em; text-align: left; }
+.reveal .pyr-defs > div { display: grid; grid-template-columns: 2.7em 1fr; gap: .7em; align-items: baseline; }
+.reveal .pyr-defs dt { font-family: var(--font-display); color: var(--c-accent); font-size: 1.05em; letter-spacing: .03em; }
+.reveal .pyr-defs dd { margin: 0; font-size: .62em; color: rgba(255, 255, 255, .82); line-height: 1.32; }
+.reveal .pyr-defs dd i { color: #fff; font-style: italic; }
+
+/* --- Beneficios: tarjetas glass con número fantasma --- */
+.reveal .bens { display: grid; grid-template-columns: repeat(2, 1fr); gap: .7em; text-align: left; }
+.reveal .ben { overflow: hidden; padding: .8em .9em .8em 1em; border-left: 3px solid var(--c-accent); }
+.reveal .ben__n { position: absolute; right: .18em; top: -.12em; font-family: var(--font-display); color: rgba(10, 228, 195, .22); font-size: 2.6em; line-height: 1; }
+.reveal .ben h3 { font-size: 1.02em; margin: 0 0 .12em; color: #fff; }
+.reveal .ben p { font-size: .66em; color: rgba(255, 255, 255, .82); margin: 0; }
+
+/* --- Timeline horizontal con línea + nodos glass --- */
+.reveal .htl { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2em; margin-top: 1.8em; text-align: left; }
+.reveal .htl::before { content: ""; position: absolute; top: -.8em; left: 7%; right: 7%; height: 2px; background: linear-gradient(90deg, var(--c-accent-blue), var(--c-accent)); box-shadow: 0 0 14px rgba(10, 228, 195, .4); }
+.reveal .htl__node { padding: .8em .85em; }
+.reveal .htl__dot { position: absolute; top: -1.15em; left: .9em; width: .6em; height: .6em; border-radius: 50%; background: var(--c-accent-blue); box-shadow: 0 0 0 .22em rgba(0, 71, 233, .25), 0 0 14px rgba(0, 71, 233, .6); }
+.reveal .htl__node:last-child .htl__dot { background: var(--c-accent); box-shadow: 0 0 0 .22em rgba(10, 228, 195, .25), 0 0 14px rgba(10, 228, 195, .7); }
+.reveal .htl h3 { font-size: 1.02em; color: #fff; margin: 0 0 .14em; }
+.reveal .htl p { font-size: .64em; color: rgba(255, 255, 255, .8); margin: 0; }
+
+/* --- Empresas: nombre en display grande --- */
+.reveal .orgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8em; }
+.reveal .org { text-align: left; padding: .85em .9em; }
+.reveal .org h3 { font-size: 1.45em; color: #fff; margin: 0 0 .18em; }
+.reveal .org p { font-size: .64em; color: rgba(255, 255, 255, .8); margin: 0; }
+.reveal .org .tag { display: inline-block; font-size: .52em; letter-spacing: .14em; text-transform: uppercase; color: var(--c-accent); margin-bottom: .35em; }
+
+/* --- Portada / cierre dramáticos --- */
+.reveal .slide--cover .cover { text-align: left; max-width: 20em; }
+.reveal .slide--cover .cover__title { font-size: 2.8em; line-height: .95; margin: 0; }
+.reveal .slide--cover .cover__title .hl { color: var(--c-accent); }
+.reveal .slide--cover .cover__sub { font-size: .95em; color: rgba(255, 255, 255, .92); margin: .6em 0 0; max-width: 18em; }
+.reveal .slide--cover .cover__rule { width: 4.6em; height: .15em; background: var(--c-accent); border-radius: 3px; margin-top: .75em; box-shadow: 0 0 26px rgba(10, 228, 195, .8); }
+.reveal .slide--cover .cover .eyebrow { color: var(--c-accent); }
+/* Título con shimmer (gradiente animado) — portada de M4. */
+.reveal .cover__title .shine {
+  background: linear-gradient(100deg, var(--c-accent) 10%, #79d9ff 30%, #b79bff 50%, #79d9ff 70%, var(--c-accent) 90%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shine 6s linear infinite;
+}
+@keyframes shine { to { background-position: 220% 0; } }
+@media (prefers-reduced-motion: reduce) { .reveal .cover__title .shine { animation: none; } }
+/* Scrim que oscurece el lado del texto para legibilidad sobre los racks. */
+body[data-gl] .slide--cover::before {
+  content: ""; position: absolute; inset: -50% -10%; z-index: -1;
+  background: linear-gradient(100deg, rgba(0, 5, 20, .94) 0%, rgba(0, 5, 20, .7) 34%, rgba(0, 5, 20, .12) 62%, rgba(0, 5, 20, 0) 80%);
+  pointer-events: none;
+}
+
+/* --- Entrada al presentar (la slide actual anima su contenido) --- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal .slide--cover.present .cover > * { animation: rise .7s cubic-bezier(.2, .7, .2, 1) backwards; }
+  .reveal .slide--cover.present .cover > *:nth-child(1) { animation-delay: .05s; }
+  .reveal .slide--cover.present .cover > *:nth-child(2) { animation-delay: .14s; }
+  .reveal .slide--cover.present .cover > *:nth-child(3) { animation-delay: .23s; }
+  .reveal .slide--cover.present .cover > *:nth-child(4) { animation-delay: .32s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+}
