@@ -6,7 +6,7 @@
    detecta; el profesor corrige). Mismo lenguaje que el resto de herramientas.
    ========================================================================= */
 import { Header } from "../components/index.js";
-import { escapeHtml } from "../components/_util.js";
+import { escapeHtml, appUrl } from "../components/_util.js";
 
 const MIN = 5;
 
@@ -45,6 +45,7 @@ app.innerHTML = [
       <h1 style="margin-top:var(--sp-2)">Validación del dato</h1>
       <p class="lead">Antes de analizar nada, hay que <strong>auditar la calidad del dato</strong>. Una IA o un cuadro de mando
       construidos sobre dato sucio aceleran… los errores. Tu trabajo: encontrar los problemas y documentarlos.</p>
+      <p style="margin-top:var(--sp-3)"><a class="btn btn--primary" href="${appUrl("/caso-gorbea-datos-alumno.xlsx")}" download>⬇ Descargar el dataset (Excel)</a></p>
     </div>
 
     <div class="vf-board">
@@ -52,7 +53,7 @@ app.innerHTML = [
         <div class="panel">
           <h3>Qué tienes que hacer</h3>
           <ol class="vf-steps">
-            <li>Abre el <strong>dataset del caso</strong> (el Excel que te facilitaré en clase).</li>
+            <li>Descarga y abre el <strong>dataset del caso</strong> (Excel, botón de arriba). Ábrelo en Excel, no lo copies a otra herramienta: parte de los fallos solo se ven en el propio fichero.</li>
             <li><strong>Antes</strong> de cualquier análisis, revísalo a fondo.</li>
             <li>Detecta y documenta <strong>al menos ${MIN} problemas</strong> de calidad, indicando para cada uno:
               <span class="vf-fields">hoja y celda · tipo de error · impacto en el análisis</span></li>

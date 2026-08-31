@@ -39,7 +39,7 @@ function demos() {
 
     ${group("KPIs", `
       <div class="grid grid--3" style="flex:1 1 100%">
-        ${Kpi({ value: "18 M€", label: "Inversión total en sistemas", sub: "12 sistemas mapeados" })}
+        ${Kpi({ value: "21 M€", label: "Inversión total en sistemas", sub: "12 sistemas mapeados" })}
         ${Kpi({ value: "12", label: "Sistemas mapeados", sub: "por tipo y nivel" })}
         ${Kpi({ value: "28", label: "Incidencias/mes (máx.)", sub: "de un sistema" })}
       </div>`)}

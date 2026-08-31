@@ -13,9 +13,9 @@ const eur = (n) => n.toLocaleString("es-ES", { style: "currency", currency: "EUR
 
 /* Sistemas que el agente consulta vía MCP (cada uno expone una "tool"). */
 const SISTEMAS = [
-  { id: "crm", name: "Salesforce CRM", tool: "crm.get_cliente", data: { nombre: "Hostelería Aranzadi S.L.", segmento: "Club B2B", gestor: "M. Pizarro" }, chip: '{ nombre: "Hostelería Aranzadi S.L.", segmento: "Club B2B" }' },
+  { id: "crm", name: "HubSpot CRM", tool: "crm.get_cliente", data: { nombre: "Hostelería Aranzadi S.L.", segmento: "Club B2B", gestor: "M. Pizarro" }, chip: '{ nombre: "Hostelería Aranzadi S.L.", segmento: "Club B2B" }' },
   { id: "as400", name: "AS/400", tool: "facturacion.get_facturas", data: { saldo_pendiente: 24290.5, facturas_pendientes: 2 }, chip: '{ saldo_pendiente: 24290.50, facturas_pendientes: 2 }' },
-  { id: "zendesk", name: "Zendesk", tool: "soporte.get_estado", data: { nps: 41, tickets_abiertos: 1, ultimo: "Retraso en envío B2B" }, chip: '{ nps: 41, tickets_abiertos: 1 }' },
+  { id: "freshdesk", name: "Freshdesk", tool: "soporte.get_estado", data: { nps: 41, tickets_abiertos: 1, ultimo: "Retraso en envío B2B" }, chip: '{ nps: 41, tickets_abiertos: 1 }' },
 ];
 
 const GLOSARIO = [
@@ -83,7 +83,7 @@ app.innerHTML = [
       </div>
 
       <p class="mcp-note"><strong>Sin MCP</strong>, el agente solo vería un sistema a la vez (o nada): respuestas parciales,
-      como hoy en Gorbea. <strong>Con MCP</strong>, reúne CRM + AS/400 + Zendesk y por fin da la visión 360.</p>
+      como hoy en Gorbea. <strong>Con MCP</strong>, reúne CRM + AS/400 + Freshdesk y por fin da la visión 360.</p>
     </div>
   </div></main>`,
 
@@ -136,7 +136,7 @@ async function preguntar() {
   anunciar("El agente compone la respuesta con el contexto de los tres sistemas…");
   await sleep(600);
   renderAnswer();
-  anunciar("Respuesta 360 lista: el agente unió CRM, AS/400 y Zendesk en una sola explicación.");
+  anunciar("Respuesta 360 lista: el agente unió CRM, AS/400 y Freshdesk en una sola explicación.");
 
   $("#btn-ask").disabled = false;
   ocupado = false;
@@ -147,12 +147,12 @@ function renderAnswer() {
   $("#answer-text").innerHTML =
     `<strong>${escapeHtml(crm.nombre)}</strong> (${escapeHtml(crm.segmento)}, gestor ${escapeHtml(crm.gestor)}) ` +
     `tiene <strong>${eur(as.saldo_pendiente)}</strong> pendientes en ${as.facturas_pendientes} facturas (AS/400), ` +
-    `un <strong>NPS de ${zd.nps}</strong> y <strong>${zd.tickets_abiertos} incidencia abierta</strong> en Zendesk ` +
+    `un <strong>NPS de ${zd.nps}</strong> y <strong>${zd.tickets_abiertos} incidencia abierta</strong> en Freshdesk ` +
     `(«${escapeHtml(zd.ultimo)}»). Recomendación: resolver la incidencia y priorizar el cobro antes de renovar.`;
   $("#answer-360").innerHTML = `
     <div><b>${eur(as.saldo_pendiente)}</b><small>saldo pendiente · AS/400</small></div>
-    <div><b>${zd.nps}</b><small>NPS · Zendesk</small></div>
-    <div><b>${zd.tickets_abiertos}</b><small>incidencia abierta · Zendesk</small></div>`;
+    <div><b>${zd.nps}</b><small>NPS · Freshdesk</small></div>
+    <div><b>${zd.tickets_abiertos}</b><small>incidencia abierta · Freshdesk</small></div>`;
   const panel = $("#answer");
   panel.hidden = false;
   panel.focus();

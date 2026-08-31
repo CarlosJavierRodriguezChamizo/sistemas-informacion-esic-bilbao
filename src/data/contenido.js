@@ -63,15 +63,15 @@ export const MANDATOS = [
   },
   {
     id: 5,
-    titulo: "Las lecciones de los 18 M€",
+    titulo: "Las lecciones de los 21 M€",
     lema: "ROI y gestión del cambio",
-    encargo: "Explicad por qué una inversión grande no da retorno (paralelo Lidl–SAP) y cómo no repetirlo.",
+    encargo: "Explicad por qué una inversión grande no da retorno (paralelo Nike–i2) y cómo no repetirlo.",
     puntos: [
-      "Por qué 18 M€ no rinden sin integración",
-      "Paralelo con el caso Lidl–SAP",
+      "Por qué 21 M€ no rinden sin integración",
+      "Paralelo con el caso Nike–i2",
       "Cómo evitar repetir el error",
     ],
-    prep: { label: "Deck M3 · Lidl–SAP", href: "../decks/m3.html" },
+    prep: { label: "Deck M3 · Nike–i2", href: "../decks/m3.html" },
   },
 ];
 

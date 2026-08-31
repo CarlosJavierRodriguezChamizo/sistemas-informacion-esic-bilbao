@@ -26,7 +26,7 @@ async function sha256hex(str) {
 const STEPS = [
   {
     kicker: "El crecimiento que no se puede sostener",
-    h: "12 sistemas.<br>18 M€.<br>Y nadie ve al cliente entero.",
+    h: "12 sistemas.<br>21 M€.<br>Y nadie ve al cliente entero.",
     p: "Grupo Gorbea vende más que nunca. Su margen, en cambio, se desploma. El problema no está en el mercado: está dentro.",
   },
   {

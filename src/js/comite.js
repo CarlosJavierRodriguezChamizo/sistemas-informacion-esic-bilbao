@@ -85,7 +85,7 @@ root.innerHTML = `
     { label: "Historia visual: arquitectura objetivo", href: "/decks/arquitectura.html" })}
 
   ${question("03", "Pregunta 3 · Decisión", "AS/400 de Club B2B: ¿migrar o integrar?",
-    "¿Qué <span class=\"hl\">criterios</span> usarías para decidir si migrar el AS/400 de Club B2B o integrarlo vía API con el ecosistema SAP/Salesforce?",
+    "¿Qué <span class=\"hl\">criterios</span> usarías para decidir si migrar el AS/400 de Club B2B o integrarlo vía API con el resto del ecosistema (ERP y CRM)?",
     [
       { i: "i-money", h: "¿Cuánto me cuesta?", p: "Migrar es un proyecto completo; integrar es envolverlo con APIs. ¿Qué esfuerzo y dinero?" },
       { i: "i-bolt", h: "¿Qué gano si lo hago?", p: "Qué desbloquea cada opción para el negocio." },
@@ -120,7 +120,8 @@ root.innerHTML = `
     <h2 data-anim>No basta con tener razón.<br>Hay que <span class="hl">convencer</span>.</h2>
     <p class="lead" data-anim style="margin-top:1rem">Todos respondéis a las mismas preguntas. Gana quien mejor defiende —en clave de negocio— por qué su solución es la mejor.</p>
     <div class="cta-row" data-anim>
-      <a class="btn btn--primary" href="${appUrl("/index.html")}">Volver al hub</a>
+      <a class="btn btn--primary" href="${appUrl("/caso-grupo-gorbea.pdf")}" target="_blank" rel="noopener noreferrer">⬇ Descargar el caso (PDF)</a>
+      <a class="btn" href="${appUrl("/index.html")}">Volver al hub</a>
     </div>
   </div></section>
   </main>

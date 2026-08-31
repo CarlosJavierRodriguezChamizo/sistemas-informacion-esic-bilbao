@@ -77,16 +77,16 @@ root.innerHTML = `
     <div class="odoo-hero__hint" data-anim aria-hidden="true">Desplázate ↓</div>
   </div></section>
 
-  ${topic("01", "Casos reales · España", "Empresas españolas que integraron su SI", `
+  ${topic("01", "Casos reales", "Empresas que hicieron del SI su ventaja", `
     <div class="cases">
-      ${caseCard("i-store", "Distribución", "Mercadona", "Adoptó SAP S/4HANA + Retail + SuccessFactors: una sola plataforma, sin duplicidades y con datos en tiempo real de toda la cadena.", "https://news.sap.com/spain/2017/07/mercadona-acelera-su-plan-de-innovacion-digital-de-la-mano-de-sap/")}
-      ${caseCard("i-glass", "Bebidas", "Estrella Galicia", "Hijos de Rivera planifica de forma integrada demanda y suministro con SAP IBP, dentro de su transformación digital (unidad MOVE).", "https://www.saptools.es/sap-integrated-business-planning-ibp-demand-drp-hijos-de-rivera/")}
-      ${caseCard("i-leaf", "Agrícola", "Atlantic Blue", "Pasó de un escenario multisistema a tener SAP como “la columna que vertebra todos los departamentos”.", "https://news.sap.com/spain/2021/07/4-pymes-que-implementaron-el-software-erp-de-sap-con-exito/", "https://youtu.be/npuWGGhxOaI")}
-      ${caseCard("i-flask", "Alimentación", "Dallant", "Implantó SAP S/4HANA para ganar eficiencia y apoyar un crecimiento de más del 50% en cinco años.", "https://news.sap.com/spain/2021/07/4-pymes-que-implementaron-el-software-erp-de-sap-con-exito/", "https://youtu.be/aLx4px4WJgM")}
-      ${caseCard("i-building", "Construcción", "Aldesa", "Migró a SAP S/4HANA para un control exhaustivo de la planificación de sus obras.", "https://news.sap.com/spain/2021/07/4-pymes-que-implementaron-el-software-erp-de-sap-con-exito/", "https://www.youtube.com/watch?v=Iokb_yCCuZQ")}
-      ${caseCard("i-factory", "Industria", "Inquiba", "Completó su migración a SAP S/4HANA, integrando procesos y funcionalidades en un único sistema.", "https://news.sap.com/spain/2021/07/4-pymes-que-implementaron-el-software-erp-de-sap-con-exito/", "https://www.youtube.com/watch?v=v_wwYWNqiwE")}
+      ${caseCard("i-globe", "E-commerce", "Amazon", "Recomendación, inventario y logística guiados por datos en tiempo real: el SI es el núcleo del negocio, no un apoyo.", "https://www.aboutamazon.com/")}
+      ${caseCard("i-spark", "Moda", "Inditex / Zara", "Datos de tienda que guían diseño y reposición: del escaparate a la fábrica en días.", "https://www.inditex.com/")}
+      ${caseCard("i-store", "Distribución", "Walmart", "Retail Link y un enorme data warehouse: surtido y reposición decididos con datos, y compartidos con sus proveedores.", "https://corporate.walmart.com/")}
+      ${caseCard("i-chart", "Streaming", "Netflix", "El consumo, medido al detalle, decide qué recomendar y qué producir. Analítica e infraestructura propias.", "https://about.netflix.com/")}
+      ${caseCard("i-cube", "Deporte · Retail", "Decathlon", "RFID en todo el catálogo y sistemas propios: inventario preciso y venta omnicanal.", "https://www.decathlon.es/")}
+      ${caseCard("i-receipt", "Restauración", "Domino's", "Se redefinió como “una empresa tecnológica que vende pizza”: pedido digital y datos en el centro.", "https://ir.dominos.com/")}
     </div>
-    <p class="fineprint" data-anim style="margin-top:1rem">Fuentes: SAP España News Center y saptools.es · vídeos: canales de YouTube de cada caso.</p>`)}
+    <p class="fineprint" data-anim style="margin-top:1rem">Ejemplos de referencia · enlace a la web corporativa de cada empresa.</p>`)}
 
   ${topic("02", "Caso local · Sevilla", "Terapia Urbana, todo conectado", `
     <div class="glass panel" data-anim style="margin-bottom:1rem">
@@ -122,16 +122,16 @@ root.innerHTML = `
       ${arrow}
       ${flowStep("M2", "i-link", "Integrar", "ERP/CRM/SCM y una capa común: matar los silos.")}
       ${arrow}
-      ${flowStep("M3", "i-rocket", "Proyectos", "Integrar pesa más que invertir (lección Lidl–SAP).")}
+      ${flowStep("M3", "i-rocket", "Proyectos", "Integrar pesa más que invertir (lección Nike–i2).")}
       ${arrow}
       ${flowStep("M4", "i-brain", "IA + MCP", "La IA necesita dato integrado; agentes que componen la vista 360.")}
     </div>`)}
 
   ${topic("05", "La pregunta que os lleváis", "¿Tiene Gorbea las piezas? ¿Le falta que hablen?", `
     <div class="stats">
-      <div class="stat glass spot" data-anim><span class="bignum" data-count="14.5" data-dec="1" data-pre="+" data-suf=" %">+0 %</span><span class="lab">Crecen las ventas</span></div>
-      <div class="stat glass spot stat--warn" data-anim><span class="bignum">6,0 → 2,5 %</span><span class="lab">…y cae el EBITDA</span></div>
-      <div class="stat glass spot" data-anim><span class="bignum" data-count="18" data-suf=" M€">0 M€</span><span class="lab">En sistemas que no se hablan</span></div>
+      <div class="stat glass spot" data-anim><span class="bignum" data-count="11.8" data-dec="1" data-pre="+" data-suf=" %">+0 %</span><span class="lab">Crecen las ventas</span></div>
+      <div class="stat glass spot stat--warn" data-anim><span class="bignum">5,4 → 3,1 %</span><span class="lab">…y cae el EBITDA</span></div>
+      <div class="stat glass spot" data-anim><span class="bignum" data-count="21" data-suf=" M€">0 M€</span><span class="lab">En sistemas que no se hablan</span></div>
     </div>
     <p class="lead" data-anim style="margin-top:1.2rem;max-width:48ch">Más ventas y menos margen. ¿Dónde está el problema: en el mercado o <strong>dentro</strong>? ¿La ventaja está en <em>tener</em> sistemas… o en <span class="hl">conectarlos</span>? Lo cerramos juntos en clase.</p>`)}
   </main>

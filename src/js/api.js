@@ -101,7 +101,7 @@ app.innerHTML = [
       <div class="stage" id="stage">
         <div class="actor actor--crm" id="actor-crm">
           <span class="actor__role">Cliente</span>
-          <span class="actor__name">Salesforce CRM</span>
+          <span class="actor__name">HubSpot CRM</span>
           <span class="actor__sub">quiere las facturas</span>
         </div>
         <div class="actor actor--api" id="actor-api">

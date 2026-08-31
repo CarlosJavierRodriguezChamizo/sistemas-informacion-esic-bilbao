@@ -13,7 +13,7 @@ import { BLUEPRINT_FRAG } from "./gl/shaders.js";
 
 /* ------------------------------- Datos ----------------------------------- */
 const SOURCES = [
-  { label: "SAP ERP" }, { label: "CRM" }, { label: "e-commerce" },
+  { label: "Dynamics 365 (ERP)" }, { label: "CRM" }, { label: "e-commerce" },
   { label: "WMS" }, { label: "Gorbea+ App" }, { label: "AS/400", cls: "is-as400" },
 ];
 

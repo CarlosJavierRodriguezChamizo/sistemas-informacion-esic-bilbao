@@ -15,9 +15,9 @@ const byName = new Map(sistemas.map((s) => [s.sistema, s.id]));
 
 /* Etiqueta corta para el grafo (el nombre completo va en la ficha). */
 const SHORT = {
-  1: "SAP S/4HANA", 2: "Salesforce Sales", 3: "Salesforce Commerce", 4: "SAP BW/4HANA",
-  5: "Power BI", 6: "Zendesk", 7: "Manhattan WMS", 8: "AS/400",
-  9: "Google Analytics 4", 10: "Emarsys", 11: "Bazaarvoice", 12: "Gorbea+ App",
+  1: "Dynamics 365", 2: "HubSpot Sales", 3: "Adobe Commerce", 4: "Snowflake",
+  5: "Qlik Sense", 6: "Freshdesk", 7: "Blue Yonder WMS", 8: "AS/400",
+  9: "Matomo Analytics", 10: "Klaviyo", 11: "Trustpilot", 12: "Gorbea+ App",
 };
 
 /* Glosario de siglas — para no usar acrónimos sin explicar (tipos, niveles…). */
@@ -27,7 +27,7 @@ const GLOSARIO = [
   ["SCM", "Supply Chain Management · cadena de suministro y logística."],
   ["WMS", "Warehouse Management System · gestión de almacén."],
   ["BI", "Business Intelligence · analítica e informes de negocio."],
-  ["BW", "(SAP) Business Warehouse · almacén de datos de SAP."],
+  ["DWH", "Data Warehouse · almacén de datos único para análisis."],
   ["TPS", "Transaction Processing System · transacciones del día a día."],
   ["MIS", "Management Information System · informes y control para mandos."],
   ["DSS", "Decision Support System · apoyo al análisis y la decisión."],
@@ -61,8 +61,8 @@ for (const s of sistemas) {
 const edges = [...edgeMap.values()];
 
 /* ----------------------------- Escalas ----------------------------------- */
-const MAX_INV = Math.max(...sistemas.map((s) => s.inversion_k)); // 6800
-const MAX_INC = Math.max(...sistemas.map((s) => s.incidencias_mes)); // 28
+const MAX_INV = Math.max(...sistemas.map((s) => s.inversion_k)); // 7900
+const MAX_INC = Math.max(...sistemas.map((s) => s.incidencias_mes)); // 24
 const radius = (inv) => 18 + Math.sqrt(inv / MAX_INV) * 34;       // ∝ inversión (área)
 const strokeW = (inc) => 2 + (inc / MAX_INC) * 6;                 // ∝ incidencias
 

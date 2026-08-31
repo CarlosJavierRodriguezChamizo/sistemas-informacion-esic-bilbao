@@ -5,3 +5,6 @@ dist
 
 # Config local del editor/harness
 .claude/
+
+# Material de profesor (solución) — NUNCA se publica
+/_profesor/

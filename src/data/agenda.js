@@ -94,7 +94,7 @@ export const DIAS = [
       },
       {
         time: "11:15", dur: "30'", cat: "deck", block: "m3",
-        title: "M3 · Proyectos de SI + caso Lidl-SAP",
+        title: "M3 · Proyectos de SI + caso Nike–i2",
         note: "Por qué fracasan los proyectos: integrar pesa más que invertir.",
         links: [{ label: "Abrir deck", href: "decks/m3.html", kind: "deck" }],
       },

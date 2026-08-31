@@ -99,7 +99,11 @@ app.innerHTML = [
     html: `
       <h1 class="hero__title">Sistemas de Información</h1>
       <p class="hero__subtitle">Del concepto al diagnóstico — Caso Grupo Gorbea</p>
-      <p style="margin-top:var(--sp-5)"><a class="btn btn--primary" href="decks/intro.html">▶ Abrir apertura inmersiva</a></p>`,
+      <p class="row" style="margin-top:var(--sp-5);gap:var(--sp-3);flex-wrap:wrap">
+        <a class="btn btn--primary" href="decks/intro.html">▶ Abrir apertura inmersiva</a>
+        <a class="btn" href="caso-grupo-gorbea.pdf" target="_blank" rel="noopener noreferrer">⬇ Descargar el caso (PDF)</a>
+        <a class="btn" href="caso-gorbea-datos-alumno.xlsx" download>⬇ Dataset (Excel)</a>
+      </p>`,
   }),
 
   /* Banda azul con el gancho del caso */
@@ -109,8 +113,8 @@ app.innerHTML = [
       <div class="gancho">
         <p class="gancho__q">¿Por qué crece el negocio pero no la rentabilidad?</p>
         <div class="gancho__kpis">
-          ${Kpi({ value: "+14,5 %", label: "Crecimiento de ventas" })}
-          ${Kpi({ value: "6,0 % → 2,5 %", label: "Caída del EBITDA" })}
+          ${Kpi({ value: "+11,8 %", label: "Crecimiento de ventas" })}
+          ${Kpi({ value: "5,4 % → 3,1 %", label: "Caída del EBITDA" })}
         </div>
       </div>`,
   }),

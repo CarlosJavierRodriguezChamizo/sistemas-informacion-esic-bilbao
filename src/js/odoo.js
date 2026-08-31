@@ -99,7 +99,7 @@ root.innerHTML = `
       ${feat("i-open", "Open source", "Sin lock-in: acceso al código, miles de módulos y comunidad activa.")}
       ${feat("i-spark", "UX moderna", "Interfaz limpia y usable; curva de adopción suave frente a ERPs clásicos.")}
       ${feat("i-bolt", "Implantación rápida", "Procesos estándar listos de fábrica; arrancas en semanas, no años.", "feat--accent")}
-      ${feat("i-money", "Coste competitivo", "Mucho más asequible que SAP/Oracle para pyme y mediana empresa.")}
+      ${feat("i-money", "Coste competitivo", "Mucho más asequible que los ERP propietarios tradicionales para pyme y mediana empresa.")}
     </div>`)}
 
   ${topic("03", "Las dos ediciones", "Odoo Enterprise vs Community", `

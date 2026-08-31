@@ -11,9 +11,9 @@ import { initScrolly } from "./scrolly.js";
 
 const sistemas = getSistemas();
 const SHORT = {
-  1: "SAP S/4HANA", 2: "SF Sales Cloud", 3: "SF Commerce", 4: "SAP BW/4HANA",
-  5: "Power BI", 6: "Zendesk", 7: "Manhattan WMS", 8: "AS/400",
-  9: "GA4", 10: "Emarsys", 11: "Bazaarvoice", 12: "Gorbea+ App",
+  1: "Dynamics 365", 2: "HubSpot", 3: "Adobe Commerce", 4: "Snowflake",
+  5: "Qlik Sense", 6: "Freshdesk", 7: "Blue Yonder WMS", 8: "AS/400",
+  9: "Matomo", 10: "Klaviyo", 11: "Trustpilot", 12: "Gorbea+ App",
 };
 const CLIENT = new Set([2, 3, 6, 10, 11, 12]); // tipo contiene CRM
 
@@ -56,8 +56,8 @@ function stageSvg() {
     <div class="stage-overlay">
       <p class="o-q">¿Por qué crece el negocio pero no la rentabilidad?</p>
       <div class="o-kpis">
-        <div><div class="o-num">+14,5 %</div><div class="o-lab">Ventas</div></div>
-        <div><div class="o-num">6,0 → 2,5 %</div><div class="o-lab">EBITDA</div></div>
+        <div><div class="o-num">+11,8 %</div><div class="o-lab">Ventas</div></div>
+        <div><div class="o-num">5,4 → 3,1 %</div><div class="o-lab">EBITDA</div></div>
       </div>
     </div>
   </div>`;
@@ -65,7 +65,7 @@ function stageSvg() {
 
 const STEPS = [
   { s: 1, k: "La paradoja", h: "Crece el negocio, no la rentabilidad", p: "Grupo Gorbea vende más que nunca, pero su margen se desploma. El problema no está en el mercado: está dentro." },
-  { s: 2, k: "El mapa", h: "12 sistemas · 18 M€ invertidos", p: "Gorbea ha rodeado a su cliente de doce sistemas y casi dieciocho millones de euros. Sobre el papel, está cubierto." },
+  { s: 2, k: "El mapa", h: "12 sistemas · 21 M€ invertidos", p: "Gorbea ha rodeado a su cliente de doce sistemas y más de veinte millones de euros. Sobre el papel, está cubierto." },
   { s: 3, k: "El cliente", h: "Varias piezas tocan al cliente", p: "CRM, e-commerce, fidelización, marketing, reseñas y servicio: varias piezas distintas. ¿Comparten entre sí lo que saben del cliente?" },
   { s: 4, k: "Los silos", h: "¿Cuáles quedan aislados?", p: "Algunos sistemas guardan el dato de cliente más valioso sin compartirlo con el resto. ¿Cuáles? Míralos en el mapa." },
   { s: 5, k: "La consecuencia", h: "¿Ve alguien al cliente completo?", p: "Si los sistemas no se integran, ¿quién ve al cliente entero? ¿Cómo se decide —y cómo se consolida la información— entonces?" },
@@ -100,7 +100,7 @@ app.innerHTML = [
     <div class="tool-intro">
       <span class="badge badge--m2">M2 · Historia visual</span>
       <h1 style="margin-top:var(--sp-2)">El problema de los silos</h1>
-      <p class="lead">Desplázate para ver cómo doce sistemas y 18 M€ pueden, aun así, dejar a la empresa sin ver a su cliente.</p>
+      <p class="lead">Desplázate para ver cómo doce sistemas y 21 M€ pueden, aun así, dejar a la empresa sin ver a su cliente.</p>
     </div>
     <div class="scrolly" data-scene="1">
       <div class="scrolly__inner">
