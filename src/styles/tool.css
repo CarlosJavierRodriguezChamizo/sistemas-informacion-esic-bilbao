@@ -3,17 +3,31 @@
    Cabecera, intro, barra de acciones (toolbar) y región de estado.
    ========================================================================= */
 
-.tool-intro { max-width: 70ch; }
+/* Cabecera de herramienta como tarjeta con relieve y filo turquesa */
+.tool-intro {
+  max-width: none;
+  padding: clamp(1.2rem, 3vw, 2rem) clamp(1.2rem, 3vw, 2.2rem);
+  background: var(--surface-accent);
+  border: 1px solid var(--c-line);
+  border-top: 4px solid var(--c-accent);
+  border-radius: var(--radius);
+  box-shadow: var(--elev-1);
+  margin-bottom: var(--sp-6);
+}
 .tool-intro h1 { margin-bottom: var(--sp-2); }
-.tool-intro .lead { margin-top: 0; }
+.tool-intro .lead { margin-top: 0; max-width: 70ch; }
+.tool-intro h1 { max-width: 24ch; }
 
 /* Barra de acciones pegajosa (Comprobar / Reiniciar / estado) */
 .toolbar {
   position: sticky; top: 0; z-index: 20;
   display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3);
-  padding: var(--sp-3) 0; margin-top: var(--sp-4);
-  background: var(--c-bg);
-  border-bottom: 1px solid var(--c-line);
+  padding: var(--sp-3) var(--sp-4); margin-top: var(--sp-4);
+  background: rgba(255, 255, 255, .82);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(0, 19, 63, .06);
 }
 .toolbar__spacer { flex: 1 1 auto; }
 

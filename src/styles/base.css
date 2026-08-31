@@ -16,9 +16,24 @@ body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--c-body);
-  background: var(--c-bg);
+  background: var(--page-bg);
+  background-attachment: fixed;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+/* Textura de puntos sutil, fija tras el contenido (profundidad offline, sin imágenes) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--dots);
+  background-size: var(--dots-size);
+  opacity: .55;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 img, svg { max-width: 100%; }
@@ -85,12 +100,12 @@ h3 { font-size: clamp(1.4rem, 2.2vw, 1.9rem); }
   padding-block: clamp(2.5rem, 6vw, 5rem);
 }
 .section--light {
-  background: var(--c-bg);
+  background: transparent;   /* deja ver el fondo de página con textura */
   color: var(--c-body);
 }
 /* Sobre azul: todo el texto en blanco (regla de color del sistema) */
 .section--blue {
-  background: var(--c-bg-blue);
+  background: var(--blue-bg);
   color: #fff;
 }
 .section--blue h1,

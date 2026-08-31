@@ -170,12 +170,12 @@ body[data-gl] .slide--cover p { text-shadow: 0 2px 28px rgba(0, 5, 20, .75); }
 .reveal .ben,
 .reveal .htl__node {
   position: relative;
-  background: linear-gradient(155deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, .035));
+  background: linear-gradient(155deg, rgba(255, 255, 255, .16) 0%, rgba(255, 255, 255, .04) 55%, rgba(10, 228, 195, .035) 100%);
   -webkit-backdrop-filter: blur(18px) saturate(150%);
   backdrop-filter: blur(18px) saturate(150%);
   border: 1px solid rgba(255, 255, 255, .18);
   border-radius: 18px;
-  box-shadow: 0 16px 46px rgba(0, 8, 28, .45), inset 0 1px 0 rgba(255, 255, 255, .18);
+  box-shadow: 0 2px 8px rgba(0, 8, 28, .35), 0 18px 52px rgba(0, 8, 28, .5), inset 0 1px 0 rgba(255, 255, 255, .22);
 }
 
 /* Mejor jerarquía/legibilidad general en M1 */

@@ -61,16 +61,17 @@
 
 /* ----------------------------------------------------------------- Card */
 .card {
-  background: var(--c-bg);
+  background: var(--surface);
   border: 1px solid var(--c-line);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--elev-1);
   padding: var(--sp-5);
+  position: relative;
 }
 .card__title { margin: 0 0 var(--sp-2); }
 .card__body { color: var(--c-body); }
-.card--link { display: block; text-decoration: none; color: inherit; transition: box-shadow .15s, transform .15s; }
-.card--link:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.card--link { display: block; text-decoration: none; color: inherit; transition: box-shadow .2s ease, transform .2s ease; }
+.card--link:hover { box-shadow: var(--elev-2); transform: translateY(-3px); }
 /* Filo turquesa como detalle gráfico (no texto) */
 .card--accent { border-top: 4px solid var(--c-accent); }
 
@@ -108,13 +109,17 @@
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 6vw, 4.4rem);
   line-height: .95;
-  color: var(--c-accent-blue);
   letter-spacing: .01em;
+  color: var(--c-accent-blue);
+  background: linear-gradient(120deg, var(--c-ink) 0%, var(--c-accent-blue) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .kpi__label { color: var(--c-ink-soft); font-size: .95rem; max-width: 22ch; }
 .kpi__sub { color: var(--c-ink-soft); font-size: .8rem; }
-/* Sobre azul: número en turquesa, etiqueta en blanco */
-.section--blue .kpi__num { color: var(--c-accent); }
+/* Sobre azul: número en turquesa (reset del degradado con relleno transparente) */
+.section--blue .kpi__num { background: none; color: var(--c-accent); -webkit-text-fill-color: var(--c-accent); }
 .section--blue .kpi__label,
 .section--blue .kpi__sub { color: var(--c-white-soft); }
 
@@ -140,9 +145,13 @@
 .btn:active { transform: translateY(0); }
 .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
 
-/* Primario: relleno azul, texto blanco */
-.btn--primary { background: var(--c-accent-blue); color: #fff; border-color: var(--c-accent-blue); }
-.btn--primary:hover { background: #0036b3; border-color: #0036b3; }
+/* Primario: relleno azul con degradado + sombra de color, texto blanco */
+.btn--primary {
+  background: linear-gradient(180deg, #0a54f0 0%, #0043db 100%);
+  color: #fff; border-color: #0043db;
+  box-shadow: 0 6px 16px rgba(0, 71, 233, .26);
+}
+.btn--primary:hover { background: linear-gradient(180deg, #0740c9 0%, #0036b3 100%); border-color: #0036b3; box-shadow: 0 8px 22px rgba(0, 71, 233, .32); }
 
 /* Secundario: contorno azul, texto azul */
 .btn--secondary { background: transparent; color: var(--c-accent-blue); border-color: var(--c-accent-blue); }
