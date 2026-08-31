@@ -255,6 +255,12 @@ body[data-gl] .slide--cover p { text-shadow: 0 2px 28px rgba(0, 5, 20, .75); }
 .reveal .checks li::before { content: "✓"; position: absolute; left: 0; top: -.02em; color: var(--c-accent); font-weight: 700; }
 .reveal .checks li strong { color: #fff; }
 
+/* Tabla comparativa compacta (M2 · soluciones ERP) */
+.reveal .cmp { width: 100%; border-collapse: collapse; font-size: .5em; margin-top: .5em; }
+.reveal .cmp th, .reveal .cmp td { border: 1px solid rgba(255, 255, 255, .16); padding: .55em .6em; text-align: left; vertical-align: top; color: rgba(255, 255, 255, .9); }
+.reveal .cmp thead th { background: rgba(10, 228, 195, .16); color: #fff; font-family: var(--font-display); letter-spacing: .02em; }
+.reveal .cmp tbody td:first-child { font-weight: 700; color: #fff; }
+
 /* --- Rejilla de "piezas" con número fantasma --- */
 .reveal .feats { display: grid; grid-template-columns: repeat(2, 1fr); gap: .7em; }
 .reveal .feats--3 { grid-template-columns: repeat(3, 1fr); }

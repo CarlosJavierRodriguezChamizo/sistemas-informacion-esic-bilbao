@@ -5,12 +5,13 @@
 import { Header, Section, Kpi, Chip } from "../components/index.js";
 import { escapeHtml } from "../components/_util.js";
 import { DIAS, CATS } from "../data/agenda.js";
+import { load, save } from "./store.js";
 
 /* ----- Estado en memoria (no persiste entre recargas, por diseño) ----- */
 const STATES = ["pendiente", "encurso", "hecho"];
 const STATE_LABEL = { pendiente: "Pendiente", encurso: "En curso", hecho: "Hecho" };
-/** Map<string,string>  id de bloque -> estado actual. */
-const estados = new Map();
+/** Map<string,string>  id de bloque -> estado actual (persistido en el navegador). */
+const estados = new Map(Object.entries(load("hub:estados", {})));
 
 /* --------------------------- Helpers de render --------------------------- */
 
@@ -145,6 +146,7 @@ app.addEventListener("click", (e) => {
   const actual = estados.get(id) || "pendiente";
   const siguiente = STATES[(STATES.indexOf(actual) + 1) % STATES.length];
   estados.set(id, siguiente);
+  save("hub:estados", Object.fromEntries(estados));
 
   // Actualiza el botón y la tarjeta sin re-renderizar todo (conserva el foco).
   btn.dataset.status = siguiente;

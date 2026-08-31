@@ -28,8 +28,9 @@ sistemas.forEach((s, i) => {
 function nodeSvg(s) {
   const { x, y, ang } = pos[s.id];
   const r = 24;
-  const cls = `sv-node${CLIENT.has(s.id) ? " is-client" : ""}${s.aislado ? " is-silo" : ""}`;
-  // desplazamiento hacia afuera para los silos (escena 4)
+  // No se marcan los gaps: los sistemas aislados NO se distinguen (ni color ni
+  // desplazamiento). El alumno debe descubrirlos, no verlos señalados.
+  const cls = `sv-node${CLIENT.has(s.id) ? " is-client" : ""}`;
   const ox = (Math.cos(ang) * 62).toFixed(0), oy = (Math.sin(ang) * 62).toFixed(0);
   const labelBelow = y > CY;
   const ly = labelBelow ? y + r + 16 : y - r - 10;

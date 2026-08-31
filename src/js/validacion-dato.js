@@ -7,11 +7,12 @@
    ========================================================================= */
 import { Header } from "../components/index.js";
 import { escapeHtml, appUrl } from "../components/_util.js";
+import { load, save } from "./store.js";
 
 const MIN = 5;
 
 /* ------------------------------- Estado ---------------------------------- */
-const findings = []; // { hoja, celda, tipo, impacto }
+const findings = load("validacion:findings", []); // { hoja, celda, tipo, impacto } (persistido)
 
 /* ------------------------------- Render ---------------------------------- */
 const app = document.querySelector("#app");
@@ -94,6 +95,7 @@ function repintar() {
   $("#vf-list").innerHTML = listHtml();
   $("#vf-count").textContent = String(findings.length);
   $("#vf-ok").hidden = findings.length < MIN;
+  save("validacion:findings", findings);
 }
 
 $("#vf-form").addEventListener("submit", (e) => {
@@ -136,3 +138,6 @@ $("#vf-copy").addEventListener("click", async () => {
     ta.remove();
   }
 });
+
+/* Sincroniza los contadores con lo cargado del navegador. */
+repintar();

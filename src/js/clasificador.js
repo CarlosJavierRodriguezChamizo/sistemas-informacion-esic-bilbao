@@ -7,6 +7,7 @@
 import { Header, Button } from "../components/index.js";
 import { escapeHtml } from "../components/_util.js";
 import { getSistemas, sistemasCliente } from "./data.js";
+import { load, save } from "./store.js";
 
 /* ----------------------------- Configuración ----------------------------- */
 const ZONES = [
@@ -58,8 +59,12 @@ const DUMMIES = {
 
 /* ------------------------------- Estado --------------------------------- */
 const sistemas = getSistemas();
-/** Map<idCarta, ubicación>  ('pool' | código de zona). */
+/** Map<idCarta, ubicación>  ('pool' | código de zona). Persistida en el navegador. */
 const ubicacion = new Map(sistemas.map((s) => [s.id, "pool"]));
+const VALID_ZONES = new Set([...ZONES.map((z) => z.key), "pool"]);
+const _stored = load("clasif:ubic", {});
+sistemas.forEach((s) => { const z = _stored[s.id]; if (z && VALID_ZONES.has(z)) ubicacion.set(s.id, z); });
+const saveUbic = () => save("clasif:ubic", Object.fromEntries(ubicacion));
 let seleccionada = null;     // id de carta seleccionada (teclado/click)
 let validado = false;
 let intentos = 0;            // nº de veces que se pulsa "Comprobar"
@@ -157,11 +162,18 @@ app.innerHTML = [
 /* Pinta las tarjetas en el pool inicial. */
 bodyEl("pool").innerHTML = sistemas.map(cardHtml).join("");
 
+/* Restaura las colocaciones guardadas en el navegador. */
+sistemas.forEach((s) => {
+  const z = ubicacion.get(s.id);
+  if (z && z !== "pool" && bodyEl(z)) bodyEl(z).appendChild(cardEl(s.id));
+});
+
 /* ----------------------------- Colocar carta ----------------------------- */
 function colocar(id, zona) {
   const card = cardEl(id);
   bodyEl(zona).appendChild(card);
   ubicacion.set(id, zona);
+  saveUbic();
   limpiarValidacion();      // cualquier movimiento invalida la corrección previa
   actualizarContadores();
   deseleccionar();
@@ -296,6 +308,7 @@ function reiniciar() {
   validado = true;            // fuerza la limpieza de clases en limpiarValidacion()
   document.querySelectorAll(".csys-card").forEach((c) => bodyEl("pool").appendChild(c));
   ubicacion.forEach((_, id) => ubicacion.set(id, "pool"));
+  saveUbic();
   limpiarValidacion();
   actualizarContadores();
   deseleccionar();

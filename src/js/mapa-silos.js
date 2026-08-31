@@ -8,6 +8,7 @@
 import { Header } from "../components/index.js";
 import { escapeHtml } from "../components/_util.js";
 import { getSistemas } from "./data.js";
+import { load, save } from "./store.js";
 
 const sistemas = getSistemas();
 const byId = new Map(sistemas.map((s) => [s.id, s]));
@@ -85,9 +86,9 @@ const radius = (inv) => 18 + Math.sqrt(inv / MAX_INV) * 34;       // ∝ inversi
 const strokeW = (inc) => 2 + (inc / MAX_INC) * 6;                 // ∝ incidencias
 
 /* ----------------------------- Estado ------------------------------------ */
-let crudo = false;            // false = normalizado, true = dato crudo
+let crudo = load("silos:crudo", false);   // false = normalizado, true = dato crudo
 let activo = null;            // id de nodo en ficha
-const gaps = new Set();       // ids marcados por el alumno como gap crítico
+const gaps = new Set(load("silos:gaps", [])); // ids marcados como gap (persistido)
 
 /* ----------------------------- Helpers ----------------------------------- */
 const $ = (s, r = document) => r.querySelector(s);
@@ -348,6 +349,7 @@ function activar(id) {
 }
 function toggleGap(id) {
   if (gaps.has(id)) gaps.delete(id); else gaps.add(id);
+  save("silos:gaps", [...gaps]);
   aplicarEstadoNodos();
   repintarFicha();
   repintarGapList();
@@ -390,12 +392,21 @@ app.addEventListener("click", (e) => {
 /* Toggle crudo / normalizado */
 $("#toggle-crudo").addEventListener("change", (e) => {
   crudo = e.target.checked;
+  save("silos:crudo", crudo);
   $("#switch-state").textContent = crudo ? "crudo" : "normalizado";
   repintarGrafo();
   anunciar(crudo
     ? "Mostrando el dato crudo: el mismo significado aparece escrito de varias formas distintas."
     : "Mostrando el dato normalizado: Sí / No / Parcial.");
 });
+
+/* --------------------- Restaura el estado guardado ----------------------- */
+$("#toggle-crudo").checked = crudo;
+$("#switch-state").textContent = crudo ? "crudo" : "normalizado";
+repintarGrafo();   // re-render con el crudo correcto + aplica los gaps marcados
+const _notas = $("#gap-notes");
+_notas.value = load("silos:notas", "");
+_notas.addEventListener("input", () => save("silos:notas", _notas.value));
 
 /* Reto del Comité (pista bloqueada hasta marcar ≥ N gaps) */
 $("#btn-hint").addEventListener("click", () => {

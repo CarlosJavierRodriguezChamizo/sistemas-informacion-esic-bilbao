@@ -1,0 +1,29 @@
+/* =========================================================================
+   mapa-herramientas.css — Ejercicio "Mi mapa de herramientas".
+   Reutiliza validacion-dato.css (vf-*) y añade: campos en columna, el bloque
+   de conexiones, el mapa (grafo SVG) y el panel de descarga.
+   ========================================================================= */
+
+/* Campos SIEMPRE en columna, nunca en paralelo. */
+.vf-grid { grid-template-columns: 1fr; }
+
+/* Bloque "¿se conecta con?" (opcional) */
+.mh-conecta { border: 1px solid var(--c-line); border-radius: var(--radius-sm); padding: var(--sp-3); margin: var(--sp-3) 0; }
+.mh-conecta legend { font-size: .82rem; font-weight: 600; color: var(--c-ink); padding: 0 .4em; }
+.mh-conecta__empty { font-size: .82rem; color: var(--c-ink-soft); font-style: italic; margin: 0; }
+#mh-conecta-list { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-4); }
+.mh-chk { display: inline-flex; align-items: center; gap: .4em; font-size: .85rem; color: var(--c-ink); }
+
+/* Panel y cabecera del mapa */
+.mh-map-panel { margin-top: var(--sp-4); }
+.mh-map-head { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); flex-wrap: wrap; margin-bottom: var(--sp-2); }
+.mh-map-head h3 { margin: 0; }
+
+/* Grafo */
+.mh-graph { width: 100%; height: auto; display: block; background: #fbfcff; border: 1px solid var(--c-line); border-radius: var(--radius); }
+.mh-map__empty { padding: var(--sp-7) var(--sp-5); text-align: center; color: var(--c-ink-soft); font-style: italic; background: #fbfcff; border: 1px dashed var(--c-line); border-radius: var(--radius); }
+.mh-edge { stroke: var(--c-accent-blue); stroke-width: 2; opacity: .7; }
+.mh-node__c { fill: #e9eeff; stroke: var(--c-accent-blue); stroke-width: 2; }
+.mh-node__lbl { font-family: var(--font-body); font-weight: 600; font-size: 13px; fill: var(--c-ink); text-anchor: middle; }
+
+.vf-item em { color: var(--c-accent-blue); font-style: normal; font-weight: 600; }

@@ -7,6 +7,7 @@
 import { Header, Button } from "../components/index.js";
 import { escapeHtml } from "../components/_util.js";
 import { getSistemaById } from "./data.js";
+import { load, save } from "./store.js";
 
 /* Cada criterio empuja hacia INTEGRAR (corto plazo) o MIGRAR (medio plazo).
    La polaridad es un modelo transparente y discutible, no una clave. */
@@ -28,6 +29,14 @@ const state = {
   value: Object.fromEntries(CRITERIOS.map((c) => [c.id, 3])),
   weight: Object.fromEntries(CRITERIOS.map((c) => [c.id, 3])),
 };
+/* Restaura valores/pesos guardados en el navegador. */
+const _saved = load("migrar:state", null);
+if (_saved && _saved.value && _saved.weight) {
+  CRITERIOS.forEach((c) => {
+    if (typeof _saved.value[c.id] === "number") state.value[c.id] = _saved.value[c.id];
+    if (typeof _saved.weight[c.id] === "number") state.weight[c.id] = _saved.weight[c.id];
+  });
+}
 
 /* ------------------------------- Cálculo --------------------------------- */
 function computar() {
@@ -178,6 +187,8 @@ function actualizar() {
   // Resalta el índice recomendado (o ninguno si empate)
   $("#g-integrar").classList.toggle("is-rec", r.clase === "integrar");
   $("#g-migrar").classList.toggle("is-rec", r.clase === "migrar");
+
+  save("migrar:state", state);
 }
 
 /* ------------------------------- Eventos --------------------------------- */
