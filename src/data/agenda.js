@@ -15,7 +15,6 @@ export const DIAS = [
       {
         time: "16:00", dur: "20'", cat: "pitch",
         title: "Apertura · la paradoja Gorbea + el reto del Comité",
-        note: "El profesor presenta el caso apoyándose en la apertura inmersiva.",
         links: [
           { label: "Apertura inmersiva", href: "decks/intro.html", kind: "story" },
           { label: "El reto del Comité", href: "decks/comite.html", kind: "pitch" },
@@ -26,6 +25,7 @@ export const DIAS = [
         title: "M1 · Introducción a los SI",
         links: [
           { label: "Abrir deck", href: "decks/m1.html", kind: "deck" },
+          { label: "Ejercicio: mi mapa de herramientas", href: "tools/mapa-herramientas.html", kind: "tool" },
           { label: "Práctica: clasificar los 12 sistemas", href: "tools/clasificador.html", kind: "tool" },
         ],
       },

@@ -51,7 +51,7 @@
 
 /* --------------------------------------------------------- Panel lateral */
 .side { display: flex; flex-direction: column; gap: var(--sp-4); }
-.panel { border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--sp-4); background: var(--c-bg); }
+.panel { border: 1px solid var(--c-line); border-radius: var(--radius); padding: var(--sp-4); background: var(--surface); box-shadow: var(--elev-1); }
 .panel h3 { margin: 0 0 var(--sp-3); font-size: 1.1rem; }
 
 /* Ficha del nodo */
@@ -96,3 +96,23 @@
 .switch input:checked + .switch__track::after { transform: translateX(20px); }
 .switch input:focus-visible + .switch__track { outline: 3px solid var(--c-accent-blue); outline-offset: 2px; }
 .switch__state { color: var(--c-accent-blue); }
+
+/* ------------------------------- Leyenda crudo/normalizado */
+.int-legend { margin-top: var(--sp-4); border: 1px solid var(--c-line); border-radius: var(--radius); background: var(--surface); padding: var(--sp-3) var(--sp-4); font-size: .88rem; box-shadow: var(--elev-1); }
+.int-legend > summary { cursor: pointer; font-weight: 700; color: var(--c-ink); }
+.int-legend__body { margin-top: var(--sp-3); color: var(--c-body); }
+.int-legend__body p { margin: 0 0 var(--sp-2); line-height: 1.45; }
+.int-legend__ex { margin: 0; padding-left: 1.1em; display: grid; gap: .2em; }
+.int-legend__ex li { font-size: .86rem; color: var(--c-ink-soft); }
+.int-legend code { background: #eef1f8; border: 1px solid var(--c-line); border-radius: 5px; padding: .04em .35em; font-size: .9em; color: var(--c-ink); }
+
+/* ------------------------------- Tabla resumen de sistemas */
+.summary { margin-top: var(--sp-6); border-top: 4px solid var(--c-accent); }
+.summary__scroll { overflow-x: auto; margin-top: var(--sp-2); }
+.summary__table { width: 100%; border-collapse: collapse; font-size: .86rem; min-width: 720px; }
+.summary__table th, .summary__table td { text-align: left; padding: .55em .7em; border-bottom: 1px solid var(--c-line); vertical-align: top; }
+.summary__table thead th { font-family: var(--font-display); color: #fff; background: var(--c-ink); position: sticky; top: 0; font-weight: 600; letter-spacing: .02em; }
+.summary__table tbody tr:nth-child(even) { background: rgba(0, 19, 63, .03); }
+.summary__sys { color: var(--c-ink); }
+.summary__sys span, .summary__lvl { display: block; font-weight: 400; font-size: .8em; color: var(--c-ink-soft); }
+.summary__num { white-space: nowrap; color: var(--c-ink); font-weight: 600; }

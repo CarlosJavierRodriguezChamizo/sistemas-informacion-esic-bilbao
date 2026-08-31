@@ -277,6 +277,8 @@ body[data-gl] .slide--cover p { text-shadow: 0 2px 28px rgba(0, 5, 20, .75); }
 .reveal .flow__step h3 { font-size: 1.0em; color: #fff; margin: 0 0 .15em; }
 .reveal .flow__step p { font-size: .64em; color: rgba(255, 255, 255, .8); margin: 0; }
 .reveal .flow__step .num { font-family: var(--font-display); color: var(--c-accent); font-size: .8em; }
+/* Separa el número del icono en el flujo de M1 (icono arriba, número con aire) */
+.reveal .num--flow { display: block; margin-top: .35em; font-size: 1em; }
 .reveal .flow__arrow { align-self: center; font-size: 1.6em; color: var(--c-accent); line-height: 1; text-shadow: 0 0 18px rgba(10, 228, 195, .6); }
 .reveal .loopback {
   margin: .9em auto 0; max-width: 28em; text-align: center; color: #fff; font-size: .74em;

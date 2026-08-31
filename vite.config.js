@@ -35,6 +35,7 @@ export default defineConfig({
         // El reto del Comité (pitch inicial)
         comite: r('decks/comite.html'),
         // Herramientas interactivas (prácticas)
+        mapaHerramientas: r('tools/mapa-herramientas.html'),
         clasificador: r('tools/clasificador.html'),
         mapaSilos: r('tools/mapa-silos.html'),
         validacionDato: r('tools/validacion-dato.html'),

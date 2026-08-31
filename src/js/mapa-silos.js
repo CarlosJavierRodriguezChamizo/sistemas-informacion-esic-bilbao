@@ -1,7 +1,7 @@
 /* =========================================================================
    mapa-silos.js — Práctica M2: mapa de sistemas como grafo SVG.
-   Nodos = sistemas; aristas = conectado_con. Silos en rojo. Toggle del
-   dato de integración crudo/normalizado (muestra la codificación
+   Nodos = sistemas; aristas = conectado_con (sin resaltar los aislados). Toggle
+   del dato de integración crudo/normalizado (muestra la codificación
    inconsistente del dato sin nombrar el error).
    Panel de diagnóstico de gaps (el alumno marca; sin clave de respuesta).
    ========================================================================= */
@@ -36,6 +36,24 @@ const GLOSARIO = [
   ["B2B", "Business to Business · negocio entre empresas."],
   ["UGC", "User-Generated Content · contenido de usuarios (p. ej. reseñas)."],
 ];
+
+/* Qué dato guarda cada sistema y cómo puede chocar con los demás (tabla resumen).
+   Recoge inconsistencias típicas: formatos de DNI/fecha, tildes, provincias,
+   sumatorios que no cuadran, sedes sin dar de alta, y frecuencia de actualización. */
+const DATOS = {
+  1:  { guarda: "Maestro de proveedores, pedidos, finanzas e inventario.", conflicto: "Fechas contables en otro formato; sumatorios que no cuadran con el almacén." },
+  2:  { guarda: "Contactos y oportunidades comerciales.", conflicto: "Nombres con y sin tildes; el mismo cliente duplicado respecto al ERP." },
+  3:  { guarda: "Clientes y pedidos online, catálogo.", conflicto: "El cliente web no cruza con el DNI/ID del ERP; direcciones en otro formato." },
+  4:  { guarda: "Copia de datos de todos los sistemas para analizar.", conflicto: "Se refresca una vez al día: los KPIs van con retraso frente al dato real." },
+  5:  { guarda: "Cuadros de mando e indicadores para dirección.", conflicto: "Suma sobre datos sin normalizar: totales que no cuadran entre sedes." },
+  6:  { guarda: "Tickets de soporte y NPS del cliente.", conflicto: "El cliente del ticket no está vinculado al ID de cliente del CRM/ERP." },
+  7:  { guarda: "Stock y ubicaciones del almacén.", conflicto: "Actualiza en tiempo real; el ERP solo cada X horas → stock descuadrado." },
+  8:  { guarda: "Clientes y facturas del Club B2B (legacy).", conflicto: "DNI/CIF en formato antiguo (sin puntos ni guiones); no comparte con el resto." },
+  9:  { guarda: "Visitas y navegación de la web.", conflicto: "Dato anónimo: no se puede unir con el cliente real del CRM." },
+  10: { guarda: "Suscriptores y campañas de email.", conflicto: "Provincia en MAYÚSCULAS y sin acentos; emails duplicados." },
+  11: { guarda: "Reseñas y valoraciones de clientes.", conflicto: "La reseña no se asocia al pedido ni al cliente concreto." },
+  12: { guarda: "Socios, puntos y cupones (1,2 M).", conflicto: "Sedes/tiendas no dadas de alta al 100%; fechas de alta en otro formato." },
+};
 
 /* Posiciones manuales (lienzo 1040×640) — claras para proyección.
    Clúster integrado a la izquierda/centro; silos separados a la derecha. */
@@ -108,17 +126,16 @@ function nodeSvg(s) {
   const [x, y] = POS[s.id];
   const r = radius(s.inversion_k);
   const sw = strokeW(s.incidencias_mes);
-  const fill = s.aislado ? "#fdeaea" : "#e9eeff";
   const labelY = y + r + 18;
-  const inc = s.aislado ? incBadgeSvg(s, x, y - r - 30) : "";
-  return `<g class="node ${s.aislado ? "node--silo" : ""}" data-id="${s.id}" tabindex="0" role="button"
-      aria-label="${escapeHtml(s.sistema)}. ${s.aislado ? "Sin conexiones, " : ""}${s.incidencias_mes} incidencias al mes. Activar para ver la ficha.">
+  // Sin resaltado de "aislado": todos los nodos iguales. Que los descubra el alumno
+  // mirando quién NO tiene conexiones (aristas), no por el color.
+  return `<g class="node" data-id="${s.id}" tabindex="0" role="button"
+      aria-label="${escapeHtml(s.sistema)}. ${s.incidencias_mes} incidencias al mes. Activar para ver la ficha.">
       <circle class="node__halo" cx="${x}" cy="${y}" r="${r + 6}" />
-      <circle class="node__circle" cx="${x}" cy="${y}" r="${r}" fill="${fill}" style="stroke-width:${sw.toFixed(1)}" />
+      <circle class="node__circle" cx="${x}" cy="${y}" r="${r}" fill="#e9eeff" style="stroke-width:${sw.toFixed(1)}" />
       <text class="node__flag" x="${x + r * 0.72}" y="${y - r * 0.72}">⚑</text>
       <text class="node__label" x="${x}" y="${labelY}">${escapeHtml(SHORT[s.id])}</text>
       ${pillSvg(s, x, y - r - 8)}
-      ${inc}
     </g>`;
 }
 
@@ -137,7 +154,7 @@ function fichaHtml(id) {
   const marcado = gaps.has(id);
   return `
     <h4 class="ficha__title">${escapeHtml(s.sistema)}</h4>
-    <p class="ficha__sub">${escapeHtml(s.proveedor)} · ${escapeHtml(s.nivel)}${s.aislado ? " · <strong style='color:#d33'>sin conexiones</strong>" : ""}</p>
+    <p class="ficha__sub">${escapeHtml(s.proveedor)} · ${escapeHtml(s.nivel)}</p>
     <dl class="ficha__grid">
       <dt>Tipo</dt><dd>${escapeHtml(s.tipo)}</dd>
       <dt>Año</dt><dd>${s.anio}</dd>
@@ -167,6 +184,53 @@ function glosarioHtml() {
       .map(([k, v]) => `<div><dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd></div>`)
       .join("")}</dl>
   </details>`;
+}
+
+/* --------------------- Leyenda: dato en crudo vs normalizado ------------- */
+function crudoLegendHtml() {
+  return `<details class="int-legend">
+    <summary>¿Qué es el dato en <em>crudo</em> vs <em>normalizado</em>?</summary>
+    <div class="int-legend__body">
+      <p><strong>Dato en crudo</strong>: tal cual lo guarda cada sistema. El mismo significado aparece escrito de muchas formas (activa el toggle «crudo» arriba: <code>Sí</code>, <code>SI</code>, <code>sí</code>, <code>1</code>, <code>TRUE</code>, <code>yes</code>…).</p>
+      <p><strong>Dato normalizado</strong>: unificado a un catálogo común (<code>Sí / No / Parcial</code>). Solo así se puede comparar y cruzar entre sistemas.</p>
+      <p class="muted" style="margin-bottom:.3em">Ejemplos de dato que choca entre sistemas:</p>
+      <ul class="int-legend__ex">
+        <li><strong>DNI/CIF</strong>: <code>12345678A</code> en uno · <code>12.345.678-A</code> en otro.</li>
+        <li><strong>Fechas</strong>: <code>31/12/2024</code> · <code>2024-12-31</code> · texto.</li>
+        <li><strong>Nombres con tilde</strong>: <code>José</code> vs <code>Jose</code>.</li>
+        <li><strong>Provincias</strong>: <code>BIZKAIA</code> · <code>Bizkaia</code> · <code>Vizcaya</code>.</li>
+        <li><strong>Sumatorios</strong> de cantidades que no cuadran entre sistemas.</li>
+        <li><strong>Sedes/tiendas</strong> no dadas de alta al 100% en todos los sistemas.</li>
+        <li><strong>Frecuencia</strong>: unos actualizan en tiempo real y otros una vez al día (o cada X).</li>
+      </ul>
+    </div>
+  </details>`;
+}
+
+/* -------------------- Tabla resumen de los 12 sistemas ------------------- */
+function summaryTableHtml() {
+  const rows = sistemas.map((s) => {
+    const ek = normKey(s.integrado_norm);
+    const d = DATOS[s.id] || { guarda: "", conflicto: "" };
+    return `<tr>
+      <th scope="row" class="summary__sys">${escapeHtml(s.sistema)}<span>${escapeHtml(s.proveedor)}</span></th>
+      <td>${escapeHtml(s.tipo)}<span class="summary__lvl">${escapeHtml(s.nivel)}</span></td>
+      <td><span class="tag-int tag-int--${ek}">${escapeHtml(s.integrado_norm)}</span></td>
+      <td class="summary__num">${s.incidencias_mes}/mes</td>
+      <td>${escapeHtml(d.guarda)}</td>
+      <td>${escapeHtml(d.conflicto)}</td>
+    </tr>`;
+  }).join("");
+  return `<section class="summary panel" aria-label="Tabla resumen de los sistemas">
+    <h3>Resumen de los 12 sistemas</h3>
+    <p class="muted" style="margin:0 0 var(--sp-3)">Qué guarda cada uno y cómo puede chocar con el resto.</p>
+    <div class="summary__scroll">
+      <table class="summary__table">
+        <thead><tr><th>Sistema</th><th>Tipo / Nivel</th><th>Integr.</th><th>Inc.</th><th>Datos que guarda</th><th>Conflicto típico</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  </section>`;
 }
 
 /* ------------------------- Reto del Comité (pista gated) ----------------- */
@@ -209,7 +273,7 @@ app.innerHTML = [
     <div class="tool-intro">
       <h1>Mapa de sistemas de Gorbea</h1>
       <p class="lead">Explora cómo se conectan (y cómo NO se conectan) los 12 sistemas.
-      Los sistemas <strong>sin conexiones</strong> se distinguen por color. Identifica tú los <strong>gaps de integración</strong> críticos.</p>
+      Fíjate en <strong>quién habla con quién</strong>: algún sistema guarda dato valioso y no lo comparte con nadie. Identifica tú los <strong>gaps de integración</strong> críticos.</p>
     </div>
 
     <div class="toolbar">
@@ -222,12 +286,13 @@ app.innerHTML = [
       <span class="status-live" id="status-live" role="status" aria-live="polite"></span>
     </div>
 
+    ${crudoLegendHtml()}
+
     <div class="silos-board">
       <div>
         <div class="graph-wrap">${graphSvg()}</div>
         <div class="legend-row">
-          <span><i class="swatch--dot"></i> Integrado</span>
-          <span><i class="swatch--silo"></i> Sin conexiones</span>
+          <span><i class="swatch--dot"></i> Sistema</span>
           <span><i class="swatch"></i> Conexión</span>
           <span><i class="swatch swatch--parcial"></i> Conexión parcial</span>
           <span>Tamaño ∝ inversión · grosor del borde ∝ incidencias</span>
@@ -250,6 +315,8 @@ app.innerHTML = [
         </div>
       </aside>
     </div>
+
+    ${summaryTableHtml()}
   </div></main>`,
 ].join("");
 

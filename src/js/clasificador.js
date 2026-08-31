@@ -12,13 +12,16 @@ import { getSistemas, sistemasCliente } from "./data.js";
 const ZONES = [
   { key: "erp",  label: "ERP",            desc: "Procesos internos / back-office" },
   { key: "crm",  label: "CRM",            desc: "Relación con el cliente" },
+  { key: "ecommerce", label: "E-commerce", desc: "Tienda online (catálogo, carrito, pago)" },
   { key: "scm",  label: "SCM",            desc: "Cadena de suministro / logística" },
   { key: "bi",   label: "BI / DSS / EIS", desc: "Análisis y decisión" },
   { key: "otro", label: "Otro / Operacional", desc: "No encaja en las anteriores" },
 ];
 
-/** Familia correcta a partir del campo `tipo` (acepta coincidencia de familia). */
+/** Familia correcta a partir del campo `tipo` (acepta coincidencia de familia).
+    E-commerce se comprueba ANTES que CRM (Adobe Commerce es "CRM/Commerce"). */
 function zoneOf(tipo) {
+  if (/Commerce|e-?commerce/i.test(tipo)) return "ecommerce";
   if (/CRM/i.test(tipo)) return "crm";
   if (/SCM/i.test(tipo)) return "scm";
   if (/BI|DSS|EIS|Analytics/i.test(tipo)) return "bi";
@@ -30,11 +33,28 @@ function zoneOf(tipo) {
 const FAMILY_REASON = {
   erp: "Familia ERP: gestiona procesos internos (finanzas, inventario, operaciones).",
   crm: "Familia CRM: gestiona la relación con el cliente (ventas, marketing, servicio).",
+  ecommerce: "Familia e-commerce: la tienda online (catálogo, carrito y pago por internet).",
   scm: "Familia SCM: gestiona la cadena de suministro y la logística.",
   bi:  "Familia BI/DSS/EIS: explota datos para análisis y decisión.",
   otro: "No encaja en ERP/CRM/SCM/BI.",
 };
 const ZONE_LABEL = Object.fromEntries(ZONES.map((z) => [z.key, z.label]));
+
+/** Explicación "para dummies" de cada plataforma (se revela tras 3 intentos). */
+const DUMMIES = {
+  1:  "El ERP: el cerebro administrativo. Lleva finanzas, compras, inventario y operaciones en un único sistema.",
+  2:  "CRM de ventas: la agenda del comercial. Guarda contactos, oportunidades y el seguimiento de cada cliente.",
+  3:  "La tienda online: catálogo, carrito y pago por internet. Es el escaparate y la caja de la web.",
+  4:  "El almacén de datos (data warehouse): junta los datos de todos los sistemas en un sitio para poder analizarlos.",
+  5:  "Cuadros de mando: convierte los datos en gráficos y KPIs para que dirección decida de un vistazo.",
+  6:  "Atención al cliente: gestiona los tickets de soporte y mide la satisfacción (NPS).",
+  7:  "Gestión de almacén (WMS): sabe qué hay, dónde está y cómo se mueve el stock dentro del almacén.",
+  8:  "Sistema heredado (legacy): el programa antiguo que todavía guarda los clientes y las facturas del negocio B2B.",
+  9:  "Analítica web: mide las visitas de la web (de dónde vienen, qué miran). Es una alternativa a Google Analytics.",
+  10: "Marketing automation: envía emails y campañas automáticas según lo que hace cada cliente.",
+  11: "Reseñas y opiniones: recoge las valoraciones de clientes (contenido generado por usuarios, UGC).",
+  12: "App de fidelización: la tarjeta de socio en el móvil; puntos, cupones y el historial de compra del cliente.",
+};
 
 /* ------------------------------- Estado --------------------------------- */
 const sistemas = getSistemas();
@@ -42,6 +62,9 @@ const sistemas = getSistemas();
 const ubicacion = new Map(sistemas.map((s) => [s.id, "pool"]));
 let seleccionada = null;     // id de carta seleccionada (teclado/click)
 let validado = false;
+let intentos = 0;            // nº de veces que se pulsa "Comprobar"
+let revelado = false;        // ¿ya se mostró la solución (tras 3 intentos)?
+const INTENTOS_SOLUCION = 3;
 
 /* ------------------------------ Utilidades DOM --------------------------- */
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -103,7 +126,7 @@ app.innerHTML = [
     </div>
     <p class="status-live" id="status-live" role="status" aria-live="polite"></p>
     <p class="kbd-hint">Teclado: <kbd>Tab</kbd> a una tarjeta, <kbd>Enter</kbd> para seleccionar,
-      luego <kbd>1</kbd>–<kbd>5</kbd> para colocar en una zona o <kbd>0</kbd> para devolver al pool.</p>
+      luego <kbd>1</kbd>–<kbd>6</kbd> para colocar en una zona o <kbd>0</kbd> para devolver al pool.</p>
 
     <div class="cls-board">
       <aside class="pool">
@@ -121,6 +144,12 @@ app.innerHTML = [
     <section class="insight" id="insight" hidden tabindex="-1" aria-live="polite">
       <p class="insight__big" id="insight-big"></p>
       <p id="insight-text"></p>
+    </section>
+
+    <section class="sol-panel" id="solucion" hidden tabindex="-1" aria-live="polite">
+      <h2>Solución justificada</h2>
+      <p class="muted">Tras ${INTENTOS_SOLUCION} intentos: la familia correcta de cada sistema y, para dummies, para qué sirve cada plataforma.</p>
+      <div id="solucion-list" class="sol-list"></div>
     </section>
   </div></main>`,
 ].join("");
@@ -140,7 +169,7 @@ function colocar(id, zona) {
 }
 
 function actualizarContadores() {
-  const conteo = { pool: 0, erp: 0, crm: 0, scm: 0, bi: 0, otro: 0 };
+  const conteo = { pool: 0, erp: 0, crm: 0, ecommerce: 0, scm: 0, bi: 0, otro: 0 };
   ubicacion.forEach((z) => (conteo[z] += 1));
   document.querySelectorAll("[data-count]").forEach((el) => {
     el.textContent = conteo[el.dataset.count];
@@ -156,7 +185,7 @@ function seleccionar(id) {
   card.setAttribute("aria-pressed", "true");
   document.querySelectorAll(".zone__place").forEach((b) => (b.disabled = false));
   const s = sistemas.find((x) => x.id === id);
-  anunciar(`${s.sistema} seleccionado. Elige una zona y pulsa “Mover aquí”, o las teclas 1–5 / 0.`);
+  anunciar(`${s.sistema} seleccionado. Elige una zona y pulsa “Mover aquí”, o las teclas 1–6 / 0.`);
 }
 function deseleccionar() {
   if (seleccionada != null) cardEl(seleccionada)?.setAttribute("aria-pressed", "false");
@@ -185,6 +214,7 @@ function reetiquetar(card, estadoTxt) {
 }
 
 function comprobar() {
+  intentos += 1;
   let correctos = 0;
   let sinClasificar = 0;
 
@@ -222,9 +252,30 @@ function comprobar() {
   $("#score-n").textContent = correctos;
 
   const restante = sinClasificar ? ` Quedan ${sinClasificar} sin clasificar.` : "";
-  anunciar(`${correctos} de 12 correctos.${restante} Pasa el ratón o el foco por cada tarjeta para ver la explicación.`);
+  if (intentos >= INTENTOS_SOLUCION) revelado = true;
+  let cola;
+  if (revelado) cola = " Solución justificada mostrada abajo.";
+  else {
+    const quedan = INTENTOS_SOLUCION - intentos;
+    cola = ` La solución se revela tras ${INTENTOS_SOLUCION} intentos (te ${quedan === 1 ? "queda 1" : `quedan ${quedan}`}).`;
+  }
+  anunciar(`${correctos} de 12 correctos.${restante}${cola}`);
 
   mostrarInsight();
+  if (revelado) renderSolucion();
+}
+
+/* --------------------------- Solución (tras 3 intentos) ------------------ */
+function renderSolucion() {
+  const rows = sistemas.map((s) => {
+    const fam = ZONE_LABEL[zoneOf(s.tipo)];
+    return `<div class="sol-row">
+      <div class="sol-row__head"><strong>${escapeHtml(s.sistema)}</strong><span class="chip">${escapeHtml(fam)}</span></div>
+      <p>${escapeHtml(DUMMIES[s.id] || "")}</p>
+    </div>`;
+  }).join("");
+  $("#solucion-list").innerHTML = rows;
+  $("#solucion").hidden = false;
 }
 
 /* ------------------------------- Insight -------------------------------- */
@@ -248,6 +299,9 @@ function reiniciar() {
   limpiarValidacion();
   actualizarContadores();
   deseleccionar();
+  intentos = 0;
+  revelado = false;
+  $("#solucion").hidden = true;
   anunciar("Reiniciado. Los 12 sistemas vuelven al pool.");
 }
 
@@ -264,7 +318,7 @@ app.addEventListener("click", (e) => {
 app.addEventListener("keydown", (e) => {
   if (seleccionada == null) return;
   if (e.target.closest("input, textarea")) return;
-  const map = { 1: "erp", 2: "crm", 3: "scm", 4: "bi", 5: "otro", 0: "pool" };
+  const map = { 1: "erp", 2: "crm", 3: "ecommerce", 4: "scm", 5: "bi", 6: "otro", 0: "pool" };
   if (e.key in map) { e.preventDefault(); colocar(seleccionada, map[e.key]); }
   if (e.key === "Escape") deseleccionar();
 });

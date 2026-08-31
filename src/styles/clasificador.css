@@ -102,3 +102,22 @@
 .insight p { color: var(--c-white-soft); margin: .2em 0 0; max-width: 60ch; }
 .insight strong { color: #fff; }
 .insight :focus-visible { outline-color: var(--c-accent); }
+
+/* --------------------------------------------- Solución (tras 3 intentos) */
+.sol-panel {
+  margin-top: var(--sp-6); padding: clamp(1.2rem, 3vw, 2rem);
+  background: var(--surface-accent); border: 1px solid var(--c-line);
+  border-top: 4px solid var(--c-accent); border-radius: var(--radius);
+  box-shadow: var(--elev-2);
+}
+.sol-panel[hidden] { display: none; }
+.sol-panel h2 { margin: 0 0 var(--sp-1); }
+.sol-list { display: grid; gap: var(--sp-3); grid-template-columns: 1fr; margin-top: var(--sp-4); }
+@media (min-width: 760px) { .sol-list { grid-template-columns: 1fr 1fr; } }
+.sol-row {
+  padding: var(--sp-4); background: var(--surface);
+  border: 1px solid var(--c-line); border-radius: var(--radius-sm); box-shadow: var(--elev-1);
+}
+.sol-row__head { display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; margin-bottom: var(--sp-2); }
+.sol-row__head strong { font-size: 1rem; color: var(--c-ink); }
+.sol-row p { margin: 0; font-size: .9rem; color: var(--c-ink-soft); line-height: 1.45; }

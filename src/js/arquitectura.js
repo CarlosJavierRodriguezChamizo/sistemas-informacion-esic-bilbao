@@ -121,6 +121,30 @@ app.innerHTML = [
         <div class="scrolly__steps">${STEPS.map(stepHtml).join("")}</div>
       </div>
     </div>
+
+    <section class="arch-legacy">
+      <span class="kicker">La pieza incómoda · en clave de negocio</span>
+      <h2>Mantener un Legacy: el riesgo que no se ve en el diagrama</h2>
+      <p class="lead">El AS/400 funciona… hoy. La pregunta de negocio es cuánto <strong>riesgo</strong> acumulas por mantenerlo — y por qué “lo nuevo” tampoco es una respuesta automática.</p>
+      <div class="legacy-grid">
+        <div class="legacy-card">
+          <h3>¿Qué es un «legacy»?</h3>
+          <p>Un sistema <strong>heredado</strong>: software antiguo que sigue siendo crítico para el negocio, pero construido con tecnología de otra época (p. ej. el AS/400 con RPG/COBOL). Nadie lo tocaría hoy… pero ahí está, sujetando la operación.</p>
+        </div>
+        <div class="legacy-card">
+          <h3>Lenguaje sin soporte</h3>
+          <p>El lenguaje o la plataforma pueden estar <strong>fuera de soporte</strong>: sin parches de seguridad ni actualizaciones del fabricante. Cada año que pasa es más frágil y más difícil de conectar con el resto.</p>
+        </div>
+        <div class="legacy-card">
+          <h3>¿Quién lo mantiene?</h3>
+          <p>Cuesta encontrar <strong>personal o partners</strong> que sepan tocarlo. Los perfiles se jubilan y casi nadie aprende ya esas tecnologías: el conocimiento queda en <strong>muy pocas manos</strong> → gran riesgo si esas personas se van.</p>
+        </div>
+        <div class="legacy-card legacy-card--accent">
+          <h3>…pero ojo con lo contrario</h3>
+          <p>Lo nuevo no siempre es mejor. Hay tecnologías con un <strong>marketing brillante</strong> y poco rodaje que prometen mucho y luego no dan la <strong>solidez</strong> de una plataforma probada. Ni viejo por viejo, ni nuevo por moda: decide por <strong>coste, soporte, madurez y riesgo</strong>.</p>
+        </div>
+      </div>
+    </section>
   </div></main>`,
 ].join("");
 
