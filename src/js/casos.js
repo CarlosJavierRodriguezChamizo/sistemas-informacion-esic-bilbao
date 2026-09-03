@@ -122,7 +122,7 @@ root.innerHTML = `
       ${arrow}
       ${flowStep("M2", "i-link", "Integrar", "ERP/CRM/SCM y una capa común: matar los silos.")}
       ${arrow}
-      ${flowStep("M3", "i-rocket", "Proyectos", "Integrar pesa más que invertir (lección Nike–i2).")}
+      ${flowStep("M3", "i-rocket", "Proyectos", "Integrar pesa más que invertir (caso Decorabaño).")}
       ${arrow}
       ${flowStep("M4", "i-brain", "IA + MCP", "La IA necesita dato integrado; agentes que componen la vista 360.")}
     </div>`)}

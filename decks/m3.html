@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <script>/*guard*/(function(){try{if(sessionStorage.getItem("gorbea-acceso")==="ok")return;}catch(e){return;}var p=location.pathname,b=p.indexOf("/tools/")>-1?"../decks/":(p.indexOf("/decks/")>-1?"":"decks/");location.replace(b+"intro.html");})();</script>
-  <title>M3 · Proyectos de SI + Nike–i2 — ESIC / Gorbea</title>
+  <title>M3 · Proyectos de SI + caso Decorabaño — ESIC / Gorbea</title>
 </head>
 <body class="deck" data-gl="m3" data-motion>
   <!-- Sprite de iconos (ilustraciones de línea) -->
@@ -24,6 +24,11 @@
     <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/></symbol>
     <symbol id="i-warning" viewBox="0 0 24 24"><path d="M12 4 3 19h18L12 4z"/><path d="M12 10v4M12 17v.4"/></symbol>
     <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5"/><circle cx="17.5" cy="9" r="2.2"/><path d="M15.5 14.6c2.6.2 4.5 1.7 4.5 4.4"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.2 11h10l2-7H6"/><circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M9.5 9.5a2.5 2.5 0 0 1 4 1.8c0 1.7-2 2-2 3M12 16.5v.3"/></symbol>
+    <symbol id="i-money" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M14.5 9.5C14 8.6 13 8 12 8c-1.4 0-2.5.9-2.5 2s1.1 2 2.5 2 2.5.9 2.5 2-1.1 2-2.5 2c-1 0-2-.6-2.5-1.5M12 6.5v11"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.5-7.97A5 5 0 0 1 16 9a3.5 3.5 0 0 1 1 6.9"/><path d="M7 18h9"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.6 4.8L18 9l-4.4 1.2L12 15l-1.6-4.8L6 9l4.4-1.2L12 3z"/><path d="M18 14l.8 2.2L21 17l-2.2.8L18 20l-.8-2.2L15 17l2.2-.8z"/></symbol>
   </svg>
 
   <img class="deck-logo deck-logo--white" src="/assets/logo_ESIC_blanco.svg" alt="ESIC" />
@@ -87,20 +92,28 @@
         <p class="muted" data-anim>…en sistemas que <strong>no se hablan entre sí</strong>. Sin integración, la inversión no rinde.</p>
       </section>
 
-      <!-- 6 · Mini-caso Nike-i2 -->
+      <!-- 6a · Caso de éxito: Decorabaño (el stack) -->
       <section>
-        <span class="kicker">Mini-caso</span>
-        <h2>Nike &amp; i2 — la previsión que falló</h2>
-        <div class="statrow" data-anim>
-          <div class="stat glass"><span class="bignum bignum--sm" data-count="400" data-pre="~" data-suf=" M$">~0 M$</span><span class="stat__lab">en el proyecto SCM</span></div>
-          <div class="stat glass"><span class="bignum bignum--sm" data-count="100" data-pre="~" data-suf=" M$">~0 M$</span><span class="stat__lab">en ventas perdidas</span></div>
-          <div class="stat glass"><span class="bignum bignum--sm">2000</span><span class="stat__lab">el aviso</span></div>
+        <span class="kicker">Caso de éxito · Decorabaño</span>
+        <h2>Un stack a medida, pieza a pieza</h2>
+        <div class="feats feats--2" style="margin-top:.6em">
+          <div class="feat spot lift" data-anim><span class="ico-chip"><svg class="ico"><use href="#i-cart"/></svg></span><h3>E-commerce a medida</h3><p>Plataforma de comercio electrónico propia, construida a su medida.</p></div>
+          <div class="feat spot lift" data-anim><span class="ico-chip"><svg class="ico"><use href="#i-help"/></svg></span><h3>Atención al cliente</h3><p>Gestión del soporte a través de <strong>Zendesk</strong>.</p></div>
+          <div class="feat spot lift" data-anim><span class="ico-chip"><svg class="ico"><use href="#i-money"/></svg></span><h3>Facturación</h3><p><strong>Holded</strong> como software de facturación.</p></div>
+          <div class="feat spot lift" data-anim><span class="ico-chip"><svg class="ico"><use href="#i-people"/></svg></span><h3>RRHH</h3><p><strong>Sesame</strong> para la gestión de personas.</p></div>
         </div>
-        <div class="feats feats--3" style="margin-top:.7em">
-          <div class="feat spot lift" data-anim><span class="ico-chip"><svg class="ico"><use href="#i-warning"/></svg></span><h3>Implantación precipitada</h3><p>Salida a producción sin pruebas ni piloto suficientes.</p></div>
-          <div class="feat spot lift" data-anim><span class="ico-chip"><svg class="ico"><use href="#i-people"/></svg></span><h3>Personalizar de más</h3><p>Adaptaron el software a su proceso en vez del proceso al estándar.</p></div>
-          <div class="feat spot lift" data-anim><span class="ico-chip"><svg class="ico"><use href="#i-target"/></svg></span><h3>Previsión sin dato fiable</h3><p>El sistema de demanda arrastró exceso y falta de stock.</p></div>
+      </section>
+
+      <!-- 6b · Decorabaño: integración e IA -->
+      <section>
+        <span class="kicker">Caso de éxito · Decorabaño</span>
+        <h2>Integración e IA transversal</h2>
+        <div class="feats feats--3" style="margin-top:.6em">
+          <div class="feat spot lift" data-anim><span class="ico-chip"><svg class="ico"><use href="#i-layers"/></svg></span><h3>ERP a medida</h3><p>ERP propio integrado con dos estrategias: <strong>integrar proveedores de dropshipping</strong> y <strong>habilitar marketplace</strong>.</p></div>
+          <div class="feat spot lift" data-anim><span class="ico-chip"><svg class="ico"><use href="#i-cloud"/></svg></span><h3>Google Workspace</h3><p>Documentación, ofimática y marketing sobre la suite de Google.</p></div>
+          <div class="feat feat--accent glow-border spot lift" data-anim><span class="ico-chip"><svg class="ico"><use href="#i-spark"/></svg></span><h3>n8n + Claude</h3><p>Integraciones con <strong>n8n</strong> y <strong>Claude</strong> integrado de forma transversal en la compañía.</p></div>
         </div>
+        <p class="statement" data-anim style="margin-top:.5em;font-size:1.0em">El SI no apoya el negocio: <span class="hl">lo hace posible</span>.</p>
       </section>
 
       <!-- 7 · Cierre + práctica -->

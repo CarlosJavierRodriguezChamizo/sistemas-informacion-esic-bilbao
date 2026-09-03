@@ -104,6 +104,12 @@ root.innerHTML = `
     null,
     "Documenta al menos <strong>cinco</strong> problemas (lo trabajaréis sobre el Excel real del caso).")}
 
+  ${topic("!", "Cómo trabajarlas", "Nunca tendréis el 100% de la información", `
+    <div class="feats feats--2">
+      ${feat("i-search", "Decidid con lo que hay", "En la empresa real nunca se decide con toda la información sobre la mesa. Decidir con lo que tenéis —y asumirlo— es parte del ejercicio.")}
+      ${feat("i-doc", "Lo que falte, dadlo por supuesto", "Si os falta un dato, podéis darlo por hecho o inventarlo con criterio. Pero al exponer, explicad el <strong>contexto de partida</strong> y <strong>por qué</strong> elegisteis eso.")}
+    </div>`)}
+
   ${topic("★", "Modo ejecutivo · comercial", "No basta con responder: convencer", `
     <div class="glass panel" data-anim style="margin-bottom:1rem">
       <p class="claim">Todos los grupos respondéis a las <strong>mismas</strong> preguntas. La diferencia la marca quién <span class="hl">defiende mejor, en clave de negocio</span>, por qué su propuesta tecnológica es la mejor.</p>

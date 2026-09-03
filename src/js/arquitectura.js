@@ -123,6 +123,30 @@ app.innerHTML = [
     </div>
 
     <section class="arch-legacy">
+      <span class="kicker">El problema del dato duplicado</span>
+      <h2>Un cliente, cinco veces</h2>
+      <p class="lead">«Tengo el <strong>DNI del mismo cliente en 5 sistemas distintos</strong>. ¿Cuál es el bueno? ¿Qué hago cuando cambia algo?» Duplicar el dato parece cómodo… hasta que deja de serlo.</p>
+      <div class="legacy-grid">
+        <div class="legacy-card">
+          <h3>Cada copia envejece distinto</h3>
+          <p>En el ERP el dato está al día, en el CRM viejo y en la app con una errata. Cinco versiones del «mismo» cliente y <strong>nadie sabe cuál es la verdad</strong>.</p>
+        </div>
+        <div class="legacy-card">
+          <h3>Se rompe al cruzar</h3>
+          <p>Si los cinco no coinciden (formato del DNI, tildes, mayúsculas), <strong>no puedes unir</strong> sus pedidos, tickets y facturas: adiós a la visión 360.</p>
+        </div>
+        <div class="legacy-card">
+          <h3>Cambiar cuesta ×5</h3>
+          <p>Un cambio de dirección o de email hay que replicarlo en cinco sitios. Siempre se olvida uno → incoherencias y errores que se arrastran.</p>
+        </div>
+        <div class="legacy-card legacy-card--accent">
+          <h3>La solución: una sola fuente de la verdad</h3>
+          <p>Un <strong>maestro de cliente único</strong> (SSOT). El DNI se guarda <strong>una vez</strong>; los demás sistemas lo <strong>consultan por API</strong>, no lo copian. Un dato, un dueño, un significado.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="arch-legacy">
       <span class="kicker">La pieza incómoda · en clave de negocio</span>
       <h2>Mantener un Legacy: el riesgo que no se ve en el diagrama</h2>
       <p class="lead">El AS/400 funciona… hoy. La pregunta de negocio es cuánto <strong>riesgo</strong> acumulas por mantenerlo — y por qué “lo nuevo” tampoco es una respuesta automática.</p>

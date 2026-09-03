@@ -43,6 +43,8 @@ export default defineConfig({
         migrarIntegrar: r('tools/migrar-integrar.html'),
         mcp: r('tools/mcp.html'),
         kahoot: r('tools/kahoot.html'),
+        // Material del profesor (acceso por contraseña, fichero cifrado)
+        profesor: r('profesor/index.html'),
       },
     },
   },
