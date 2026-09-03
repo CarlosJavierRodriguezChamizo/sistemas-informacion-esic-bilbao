@@ -46,7 +46,8 @@ app.innerHTML = [
       <h1 style="margin-top:var(--sp-2)">Validación del dato</h1>
       <p class="lead">Antes de analizar nada, hay que <strong>auditar la calidad del dato</strong>. Una IA o un cuadro de mando
       construidos sobre dato sucio aceleran… los errores. Tu trabajo: encontrar los problemas y documentarlos.</p>
-      <p style="margin-top:var(--sp-3)"><a class="btn btn--primary" href="${appUrl("/caso-gorbea-datos-alumno.xlsx")}" download>⬇ Descargar el dataset (Excel)</a></p>
+      <p style="margin-top:var(--sp-3)"><a class="btn btn--primary" href="${appUrl("/caso-gorbea-datos-alumno.xlsx")}" download>⬇ Descargar el dataset (Excel protegido)</a></p>
+      <p class="muted" style="font-size:.85rem;margin-top:var(--sp-2)">🔒 El fichero está <strong>protegido con contraseña</strong>. Ábrelo en Excel con la <strong>clave que te doy en clase</strong>.</p>
     </div>
 
     <div class="vf-board">
@@ -54,7 +55,7 @@ app.innerHTML = [
         <div class="panel">
           <h3>Qué tienes que hacer</h3>
           <ol class="vf-steps">
-            <li>Descarga y abre el <strong>dataset del caso</strong> (Excel, botón de arriba). Ábrelo en Excel, no lo copies a otra herramienta: parte de los fallos solo se ven en el propio fichero.</li>
+            <li>Descarga el <strong>dataset del caso</strong> y ábrelo en <strong>Excel</strong> con la clave de clase. No lo copies a otra herramienta: parte de los fallos solo se ven en el propio fichero.</li>
             <li><strong>Antes</strong> de cualquier análisis, revísalo a fondo.</li>
             <li>Detecta y documenta <strong>al menos ${MIN} problemas</strong> de calidad, indicando para cada uno:
               <span class="vf-fields">hoja y celda · tipo de error · impacto en el análisis</span></li>

@@ -103,7 +103,7 @@ app.innerHTML = [
       <p class="row" style="margin-top:var(--sp-5);gap:var(--sp-3);flex-wrap:wrap">
         <a class="btn btn--primary" href="decks/intro.html">▶ Abrir apertura inmersiva</a>
         <a class="btn" href="caso-grupo-gorbea.pdf" target="_blank" rel="noopener noreferrer">⬇ Descargar el caso (PDF)</a>
-        <a class="btn" href="caso-gorbea-datos-alumno.xlsx" download>⬇ Dataset (Excel)</a>
+        <a class="btn" href="caso-gorbea-datos-alumno.xlsx" download>⬇ Dataset (Excel · con clave)</a>
       </p>`,
   }),
 
