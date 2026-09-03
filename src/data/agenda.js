@@ -50,22 +50,25 @@ export const DIAS = [
         links: [{ label: "Abrir Kahoots", href: "tools/kahoot.html", kind: "kahoot" }],
       },
       {
-        time: "19:25", dur: "60'", cat: "deck",
+        time: "19:25", dur: "35'", cat: "deck",
         title: "Arquitectura de datos",
         note: "Bocetar la arquitectura objetivo y entender las APIs.",
         links: [
           { label: "Historia visual: arquitectura objetivo", href: "decks/arquitectura.html", kind: "story" },
           { label: "Cómo funciona una API", href: "tools/api.html", kind: "tool" },
           { label: "Migrar o integrar (AS/400)", href: "tools/migrar-integrar.html", kind: "tool" },
-          { label: "Ejemplo en vivo: Make", href: "https://www.make.com", kind: "tool" },
         ],
       },
       {
-        time: "20:25", dur: "30'", cat: "sintesis",
-        title: 'Casos "empresas transformadas por SI" + síntesis',
+        time: "20:00", dur: "55'", cat: "demo",
+        title: "Demostración de Make",
+        note: "Automatización e integración entre apps, en vivo.",
+        links: [{ label: "Ir a Make", href: "https://www.make.com", kind: "tool" }],
+      },
+      {
+        time: "20:55", dur: "", cat: "cierre", title: "Cierre y síntesis del día",
         links: [{ label: "Casos + síntesis", href: "decks/casos.html", kind: "story" }],
       },
-      { time: "20:55", dur: "", cat: "cierre", title: "Cierre" },
     ],
   },
   {
